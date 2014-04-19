@@ -14,10 +14,6 @@ npm install grunt-contrib-clean grunt-contrib-less grunt-contrib-copy grunt-cont
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
-```js
-...
-```
-
 ## Run
 _Run all tasks with the `cls && grunt` command._
 
