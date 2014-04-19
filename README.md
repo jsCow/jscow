@@ -18,8 +18,8 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ...
 ```
 
-## Copy task
-_Run this task with the `cls && grunt` command._
+## Run
+_Run all tasks with the `cls && grunt` command._
 
 ---
 
