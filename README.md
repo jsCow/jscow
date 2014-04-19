@@ -1,5 +1,5 @@
-# Javascript Component Framework
-## jscow - v1.0.0
+# jscow - v1.0.0
+## Javascript Component Framework
 
 > Copy files and folders.
 
