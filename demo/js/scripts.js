@@ -2,11 +2,7 @@ $(function(){
 	
 	/* Initialize and configure of jsCow framework */
 	jsCow.setup({
-		url: {
-			base: 'js/lib/jscow/',
-			applications: 'js/lib/jscow/applications/',
-			res: 'js/lib/jscow/res/'
-		}
+		yourVariable: ''
 	});
 	
 	myTestApp = jsCow.applications.add('myTestAppId').get();
