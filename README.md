@@ -14,7 +14,7 @@ npm install -g grunt-cli
 ```
 
 ```shell
-npm install grunt-contrib-clean grunt-contrib-less grunt-contrib-copy --save-dev
+npm install grunt-contrib-clean grunt-contrib-less grunt-contrib-copy grunt-contrib-compress grunt-contrib-uglify grunt-contrib-watch --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
