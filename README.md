@@ -27,7 +27,7 @@ cls && grunt
 ```
 
 Open your getting started application in your web browser: 
-[Getting Started Application](https://github.com/jsCow/jsCow/blob/master/demo/index.html)
+[...../demo/index.html](https://github.com/jsCow/jsCow/blob/master/demo/index.html)
 
 ---
 
