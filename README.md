@@ -27,7 +27,7 @@ cls && grunt
 ```
 
 Open your getting started application: 
-###jsCow-master/demo/index.html
+#####jsCow-master/demo/index.html
 
 ---
 
