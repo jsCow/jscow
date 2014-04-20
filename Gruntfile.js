@@ -5,7 +5,10 @@ module.exports = function(grunt) {
 		
 		watch: {
             less: {
-                files: ['src/theme/default/{,*/}*.less'],
+                files: [
+					'src/theme/default/{,*/}*.less',
+					'src/lib/components/{,*/}*.js'
+				],
                 tasks: [
 					'clean',
 					'less',

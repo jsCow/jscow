@@ -36,6 +36,14 @@ $(function(){
 		label.setConfig({ label: 'jsCow is cool...' });
 		panel.add(label);
 		
+		
+		win.add(
+			jsCow.components.get(jsCow.res.components.myComponent).add(
+				jsCow.components.get(jsCow.res.components.myComponent)
+			)
+		);
+		
+		
 	myTestApp.add(win);	
 	myTestApp.run();
 	
