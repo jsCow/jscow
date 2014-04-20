@@ -1,4 +1,4 @@
-# jscow - v1.0.0
+# jscow - v1.0.0 (Community Edition)
 ## Javascript Component Framework
 
 > Copy files and folders.
