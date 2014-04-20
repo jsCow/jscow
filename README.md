@@ -3,7 +3,7 @@
 
 Die hier verfügbare Version des Frameworks - "jsCow" steht der Community zu Testzwecken sowie der Entwicklung eigener Komponenten kostenfrei zur Verfügung.
 
-Alle weiteren Punkte entnehmen Sie bitte der vollständigen Lizenz unter:
+Alle weiteren Informationen zum kommerziellen Einsatz bitte aus den vollständigen Lizenz-Informationen unter der folgenden Adresse entnehmen:
 http://www.jscow.de/content/6-lizenz
 
 > Copy files and folders.
