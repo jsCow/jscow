@@ -26,8 +26,10 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 cls && grunt
 ```
 
-Open your getting started application: 
-#####jsCow-master/demo/index.html
+Open your getting started application in your web browser: 
+```shell
+jsCow-master/demo/index.html
+```
 
 ---
 
