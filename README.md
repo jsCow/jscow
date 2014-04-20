@@ -1,6 +1,11 @@
 # jscow - v1.0.0 (Community Edition)
 ## Javascript Component Framework
 
+Die hier verfügbare Version des Frameworks - "jsCow" steht der Community zu Testzwecken sowie der Entwicklung eigener Komponenten kostenfrei zur Verfügung.
+
+Alle weiteren Punkte entnehmen Sie bitte der vollständigen Lizenz unter:
+http://www.jscow.de/content/6-lizenz
+
 > Copy files and folders.
 
 
