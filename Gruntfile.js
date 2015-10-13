@@ -3,44 +3,41 @@ module.exports = function(grunt) {
 		
 		pkg: grunt.file.readJSON('package.json'),
 		
+		// Permission problem try to exec command "npm cache clean"
 		watch: {
             less: {
                 files: [
-					'src/theme/default/{,*/}*.less',
-					'src/lib/components/{,*/}*.js'
+					'src/less//{,*/}*.less',
+					'/{,*/}*.js'
 				],
                 tasks: [
 					'clean',
 					'less',
-					'copy',
+					'concat',
 					'uglify'
+					/*,
+					'yuidoc'*/
 				]
             }
         },
 		
 		clean: {
-			clean: ["prod"]
+			clean: [
+				"gen/production"
+			]
 		},
 		
 		less: {
-			development: {
-				options: {
-					paths: ["src/theme"]
-				},
-				files: {
-					//"src/theme/default/jscow-theme-default.css": "src/theme/default/jscow-theme-default.less"
-				}
-			},
 			production: {
 				options: {
-					paths: ["prod/theme"],
+					paths: ["src/less"],
 					cleancss: true,
 					modifyVars: {
 						//imgPath: '"http://"'
 					}
 				},
 				files: {
-					"prod/theme/default/jscow-theme-default-min.css": "src/theme/default/jscow-theme-default.less"
+					"gen/production/css/theme.css": "src/less/theme.less"
 				}
 			}
 		},
@@ -48,7 +45,12 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				files: [
-					{expand: true, cwd: 'src/lib', src: ['**'], dest: 'prod/lib/'}
+					{
+						expand: true, 
+						cwd: 'src/jscow/components', 
+						src: '**/*.js',
+						dest: 'gen/production/jscow/components'
+					}
 				]
 			}
 		},
@@ -60,37 +62,97 @@ module.exports = function(grunt) {
 				}
 			},
 			my_target: {
+				options: {
+					mangle: false
+				},
 				files: [
 					{
 						expand: true,
-						cwd: 'prod/lib/components',
+						cwd: 'src/jscow/components',
 						src: '**/*.js',
-						dest: 'prod/lib/components'
+						dest: 'gen/production/jscow/components'
 					},
-					{'prod/lib/jscow-components.min.js': ['prod/lib/components/*']}
+					{
+						'gen/production/jscow/jscow.min.js': ['gen/production/jscow/jscow.min.js']
+					}
 				]
+			}
+		},
+
+		concat: {
+			options: {
+				separator: ';',
+			},
+			dist: {
+				src: [
+					'src/jscow/jscow.js', 
+					'src/jscow/jscow.components.js', 
+					'src/jscow/jscow.components.view.js', 
+					'src/jscow/jscow.components.controller.js', 
+					'src/jscow/jscow.events.js'
+				],
+				dest: 'gen/production/jscow/jscow.min.js'
+			}
+		},
+		
+		jshint: {
+			options: {
+				curly: true,
+				eqeqeq: true,
+				eqnull: true,
+				browser: true,
+				globals: {
+					jQuery: true
+				}
+			},
+			all: ['src/jscow/**/*.js']
+		},
+
+		yuidoc: {
+			compile: {
+				name: '<%= pkg.name %>',
+				description: '<%= pkg.description %>',
+				version: '<%= pkg.version %>',
+				url: '<%= pkg.homepage %>',
+				options: {
+					paths: 'src/jscow/',
+					outdir: 'gen/production/docs/'
+				}
 			}
 		}
 		
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	
-	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-less');
-	
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	//grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	
 	// Default task(s).
-	grunt.registerTask('default', [ 
+	grunt.registerTask('default', [
 		'clean',
 		'less',
-		'copy',
-		'uglify',
-		'watch'
+		'jshint',
+		'concat',
+		'uglify'
+		/*,
+		'yuidoc'*/
 	]);
-	
+
+	// Debug and Development task(s).
+	grunt.registerTask('dev', [
+		'clean',
+		'less',
+		'jshint',
+		'copy',
+		'concat'
+		/*,
+		'yuidoc'*/
+	]);
+
 };

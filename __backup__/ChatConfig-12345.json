@@ -1,0 +1,11 @@
+{
+	"chatID": "12345",
+	"user": {
+		"userID": "12345",
+		"name": "Mario Linz"
+	},
+	"supporter": {
+		"userID": "98765",
+		"name": "Conny Krystek"
+	}
+}

@@ -1,0 +1,33 @@
+{
+  "name": "jscow",
+  "version": "1.1.0",
+  "description": "jsCow - Javascript Component Framework",
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "components-font-awesome": "latest",
+    "bootstrap": "latest"
+  },
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "components-font-awesome": "latest",
+    "bootstrap": "latest"
+  },
+  "keywords": [
+    "Javascript",
+    "Component",
+    "Framework"
+  ],
+  "authors": [
+    "Mario Linz <gelight@gmx.de>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "package.json"
+  ],
+  "homepage": "https://github.com/jsCow/jsCow.git"
+}

@@ -1,0 +1,42 @@
+
+//
+// SPECIFIC THEMING MODULES
+// ===========================================================
+
+// PATH VARIABLES
+
+
+// INCLUDE GOOGLE BOOTSTRAP CSS
+
+@import "mixins";				// OWN SPECIFIC MIXINS
+@import "variables";			// OWN SPECIFIC THEME VARIABLES
+
+
+// INCLUDE GOOGLE BOOTSTRAP CSS
+
+
+// INCLUDE OTHER LIBS AND PLUGINS
+
+
+// INCLUDE ALL NEEDED THEME COMPONENTS
+@import "components/qa-check/ui";
+
+
+//
+// GLOBAL STANDARD BASE STYLES
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: @font-size-base;
+	color: lighten(@text-color, 100%);
+	line-height: 140%;
+	font-weight: 100;
+	background: #333 url(img/body-dark-2.jpg) top center fixed;
+	
+	@media (min-width: @screen-md-min) {
+		&-img {
+			width: auto !important;
+		}
+	}
+	
+}

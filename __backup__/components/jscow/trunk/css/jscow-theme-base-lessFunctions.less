@@ -1,0 +1,180 @@
+/** 
+ * GELight -  Theme
+ * ©2013 Copyright - Mario Linz (GELight)
+ * http://www.jscow.de - http://www.GELight.de
+ * Author: Mario Linz
+ * Date: 2013/10/27
+ */
+
+// ==================== Variables Declerations ====================
+
+@body-color: #d3d5d7;
+
+@color-default: darken(@body-color, 5%);	// Default
+@color-primary: #df6945;					// Primary
+@color-info: #4faff6;						// Info
+@color-success: #759420;					// Success
+@color-warning: #e6b256;					// Warning
+@color-danger: #e6453c;						// Danger
+
+@layout-color-default: darken(@color-default, 0%);
+
+@text-fontFamily: "ProximaNovaLight","Helvetica Neue",Helvetica,Arial,sans-serif;
+@text-fontSize-default: 11px;
+@text-lineHeight-default: 20px;
+@text-color-default: darken(@color-default, 40%);
+@text-color-primary: darken(@color-primary, 0%);
+@text-color-info: darken(@color-info, 50%);
+@text-color-success: darken(@color-success, 40%);
+@text-color-warning: darken(@color-warning, 50%);
+@text-color-danger: darken(@color-danger, 50%);
+
+@border-width-default: 1px;
+@border-color-default: #aaa;
+@border-style-default: solid;
+@round-border-radius-default: 3px;
+
+@space-default: floor(10px);
+@transition-time-default: .2s;
+
+@shadow-color-default: rgba(0, 0, 0, .2);
+
+// ==================== Shadow ====================
+
+
+// ==================== Layout ====================
+
+.layout(@c: @layout-color-default) {
+	background: @c;
+	background: -moz-linear-gradient(top, lighten(@c, 10%) 0%, @c 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten(@c, 10%)), color-stop(100%,@c));
+	background: -webkit-linear-gradient(top,  lighten(@c, 10%) 0%,@c 100%);
+	background: -o-linear-gradient(top,  lighten(@c, 10%) 0%,@c 100%);
+	background: -ms-linear-gradient(top,  lighten(@c, 10%) 0%,@c 100%);
+	background: linear-gradient(to bottom,  lighten(@c, 10%) 0%,@c 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='lighten(@c, 10%)', endColorstr='@c',GradientType=0 );
+	
+	-webkit-box-shadow: inset 0px 2px 2px 0px lighten(@c, 30%);
+	box-shadow: inset 0px 2px 2px 0px lighten(@c, 30%);
+	
+	text-shadow: 0px 1px 1px lighten(@c, 20%);
+	filter: dropshadow(color=lighten(@c, 20%), offx=0, offy=1);
+}
+
+.layout-default(@c: @layout-color-default) {
+	.layout(@c);
+}
+
+.layout-primary(@c: @color-primary) {
+	.layout(@c);
+}
+
+.layout-info(@c: @color-info) {
+	.layout(@c);
+}
+
+.layout-success(@c: @color-success) {
+	.layout(@c);
+}
+
+.layout-warning(@c: @color-warning) {
+	.layout(@c);
+}
+
+.layout-danger(@c: @color-danger) {
+	.layout(@c);
+}
+
+// ==================== Shadow ====================
+
+.shadowInner(@w: 0px, @c: @shadow-color-default) {
+	-webkit-box-shadow: inset 0px 0 @w 0px @c;
+	box-shadow: inset 0px 0 @w 0px @c;
+}
+
+
+// ==================== Shadow ====================
+
+.shadow(@w: 0px, @c: @shadow-color-default) {
+	-webkit-box-shadow: 0px 0px @w 0px @c;
+	box-shadow: 0px 0px @w 0px @c;
+	-moz-box-shadow: 0px 0px @w 0px @c;
+}
+
+
+// ==================== Opacity ====================
+
+.opacity(@o) {
+	-moz-opacity: @o;
+	opacity: @o;
+	/*-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=@o);*/
+}
+
+
+// ==================== Round Corner ====================
+
+.round-corner-topLeft(@r: @round-border-radius-default, ) {
+	-moz-border-radius-topleft: @r; 
+	-webkit-border-top-left-radius: @r; 
+	border-top-left-radius: @r; 
+}
+.round-corner-topRight(@r: @round-border-radius-default) {
+	-moz-border-radius-topright: @r; 
+	-webkit-border-top-right-radius: @r; 
+	border-top-right-radius: @r; 
+}
+.round-corner-bottomLeft(@r: @round-border-radius-default) {
+	-moz-border-radius-bottomleft: @r; 
+	-webkit-border-bottom-left-radius: @r; 
+	border-bottom-left-radius: @r; 
+}
+.round-corner-bottomRight(@r: @round-border-radius-default) {
+	-moz-border-radius-bottomright: @r; 
+	-webkit-border-bottom-right-radius: @r; 
+	border-bottom-right-radius: @r;
+}
+.round-corner-left(@r: @round-border-radius-default) {
+	.round-corner-topLeft(@r);
+	.round-corner-bottomLeft(@r);
+}
+.round-corner-right(@r: @round-border-radius-default) {
+	.round-corner-topRight(@r);
+	.round-corner-bottomRight(@r);
+}
+.round-corner-top(@r: @round-border-radius-default) {
+	.round-corner-topLeft(@r);
+	.round-corner-topRight(@r);
+}
+.round-corner-bottom(@r: @round-border-radius-default) {
+	.round-corner-bottomLeft(@r);
+	.round-corner-bottomRight(@r);
+}
+.round-corner-all(@r: @round-border-radius-default) {
+	.round-corner-top(@r);
+	.round-corner-bottom(@r);
+}
+
+
+// ==================== Borders ====================
+
+.border-top(@color: @border-color-default, @style: @border-style-default, @w: @border-width-default) {
+	border-top: @w @style @color;
+}
+.border-right(@color: @border-color-default, @style: @border-style-default, @w: @border-width-default) {
+	border-right: @w @style @color;
+}
+.border-bottom(@color: @border-color-default, @style: @border-style-default, @w: @border-width-default) {
+	border-bottom: @w @style @color;
+}
+.border-left(@color: @border-color-default, @style: @border-style-default, @w: @border-width-default) {
+	border-left: @w @style @color;
+}
+.border-all(@color: @border-color-default, @style: @border-style-default, @w: @border-width-default) {
+	.border-top(@color, @style, @w);
+	.border-right(@color, @style, @w);
+	.border-bottom(@color, @style, @w);
+	.border-left(@color, @style, @w);
+}
+.border-transparent(@w: @border-width-default) {
+	border: @w solid transparent;
+}

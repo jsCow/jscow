@@ -1,0 +1,42 @@
+Anleitung für WebcamStream
+==========================
+
+
+
+WebcamHost (Kamerabild Sender)
+-------------------------------
+
+Ordner: webcamHost
+
+$camHost = new webcamHost("rtmp://jscow.gelight-tec.de/oflaDemo","camStreamMario");
+
+	--> rtmp://jscow.gelight-tec.de/oflaDemo URL zum Streamingserver
+	--> camStreamMario ist der Name unter dem dein aktueller Stream auf dem
+	    server abgelegt wird
+
+
+setLogo() --> Logo setzen
+
+.... der Rest sollte selbsterklärend sein
+
+
+
+
+webcamStreamView (Kamerastream empfangen)
+-----------------------------------------
+
+funktioniert eigentlich analog wie beim streamen (nur die beiligende swf
+unterscheidet sich minimal)
+
+gibst also wieder deine Streamingserver URL an:
+
+rtmp://jscow.gelight-tec.de/oflaDemo URL zum Streamingserver
+
+
+sowie deinen Filename vom Stream:
+
+camStreamMario
+
+
+
+durch das Vorgehen, kannst z.B. auch mal dynamisch Streams umschalten etc ;)

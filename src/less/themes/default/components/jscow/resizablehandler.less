@@ -1,0 +1,63 @@
+
+//
+// Resizable Handler
+
+.jsc-resizablehandler,
+.jsc-resizablehandler-disabled { 
+	
+	@resizer-width: 4px;
+	
+	.jsc-resizablehandler-resizer-n, 
+	.jsc-resizablehandler-resizer-e, 
+	.jsc-resizablehandler-resizer-s, 
+	.jsc-resizablehandler-resizer-w, 
+	.jsc-resizablehandler-resizer-nw, 
+	.jsc-resizablehandler-resizer-ne, 
+	.jsc-resizablehandler-resizer-se, 
+	.jsc-resizablehandler-resizer-sw {
+		position: absolute;
+		background: rgba(255,0,0,0.5);
+	}
+	
+	.jsc-resizablehandler-resizer-n {
+		height: @resizer-width;
+		cursor: n-resize;
+	}
+	.jsc-resizablehandler-resizer-e {
+		width: @resizer-width;
+		cursor: e-resize;
+	}
+	.jsc-resizablehandler-resizer-s {
+		height: @resizer-width;
+		cursor: s-resize;
+	}
+	.jsc-resizablehandler-resizer-w {
+		width: @resizer-width;
+		cursor: w-resize;
+	}
+	.jsc-resizablehandler-resizer-nw {
+		width: @resizer-width;
+		height: @resizer-width;
+		cursor: nw-resize;
+	}
+	.jsc-resizablehandler-resizer-ne {
+		width: @resizer-width;
+		height: @resizer-width;
+		cursor: ne-resize;
+	}
+	.jsc-resizablehandler-resizer-se {
+		width: @resizer-width;
+		height: @resizer-width;
+		cursor: se-resize;
+	}
+	.jsc-resizablehandler-resizer-sw {
+		width: @resizer-width;
+		height: @resizer-width;
+		cursor: sw-resize;
+	}
+	
+}
+
+.jsc-resizablehandler-disabled {
+	.disabled();
+}

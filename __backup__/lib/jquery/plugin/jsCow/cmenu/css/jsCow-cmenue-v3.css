@@ -1,0 +1,71 @@
+body {
+	background: #eee;
+	margin: 0;
+	padding: 0;
+}
+
+.cmenu_test {
+	width: 100px;
+	height: 30px;
+	float: left;
+	margin: 20px;
+	background: #ddd;
+	border: 1px solid #eee;
+}
+.cmenu_test:hover {
+	border: 1px solid #ccc;
+}
+
+/* jQuery - cmenu */
+.cmenu {
+	background-image: url(../img/vline.gif);
+	background-repeat: repeat-y;
+	-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;
+}
+.cmenu,
+.cmenu li .cmenu {
+	font-family: arial;
+	font-size: 11px;
+	color: #666;
+	display: none;
+	background-color: #ddd;
+	border: 1px solid #ccc;
+	position: absolute;
+	-moz-box-shadow: 3px 3px 7px #aaa; -webkit-box-shadow: 3px 3px 7px #aaa; box-shadow: 3px 3px 7px #aaa;
+}
+.cmenu li .cmenu {
+	top: 0;
+	left: 95px;
+}
+
+.cmenu ul,
+.cmenu li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	position: relative;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+   -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;
+}
+.cmenu li .cmenuItem {
+	margin: 1px 15px 1px 3px;
+	padding: 0 4px 0 28px;
+	line-height: 20px;
+	white-space: nowrap;
+}
+.cmenu li:hover {
+	background-color: #e6e6e6;
+}
+.cmenu li:hover > .cmenu {
+	display: block;
+}
+.cmenu .cmenuDisabled {
+	color: #aaa !important;
+	text-shadow: 0px 1px 0px #eee, 0px 1px 0px #eee !important;
+}
+.cmenu .cmenuSeparator {
+	background: #ddd url(../img/separator.gif) center repeat-x;
+	height: 10px;
+}
