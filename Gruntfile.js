@@ -30,6 +30,7 @@ module.exports = function(grunt) {
 		less: {
 			production: {
 				options: {
+					//relativeUrls: true,
 					paths: ["src/less"],
 					cleancss: true,
 					modifyVars: {

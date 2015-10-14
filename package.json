@@ -14,7 +14,6 @@
   "devDependencies": {
     "git": "latest",
     "git-cli": "latest",
-    "bower": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-contrib-clean": "~0.5.0",
@@ -25,13 +24,16 @@
     "grunt-contrib-compress": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-yuidoc": "latest",
-	"grunt-contrib-jshint": "latest"
+    "grunt-contrib-jshint": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "font-awesome": "latest"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jsCow/jsCow.git"
   },
   "dependencies": {
-    "git": "latest"
+    
   }
 }
