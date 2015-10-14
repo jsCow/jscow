@@ -23,7 +23,7 @@ jsCow.res.model.resizablehandler = function() {
 		width: 0,
 		height: 0,
 		zindex: 0
-	}
+	};
 
 };
 jsCow.res.model.resizablehandler.prototype = {
@@ -70,7 +70,7 @@ jsCow.res.view.resizablehandler.prototype = {
 				self.winPosX = self.mousePosX - offsetLeft;
   				self.winPosY = self.mousePosY - offsetTop;
 				self.dragstart = true;
-			}
+			};
 		})(this, e)).on('mouseup', (function(self, e) {		// Stop Drag
 			return function() {
 				self.dragstart = false;
@@ -78,7 +78,7 @@ jsCow.res.view.resizablehandler.prototype = {
 					top: self.newWinPosY,
 					left: self.newWinPosX
 				});
-			}
+			};
 		})(this, e));
 		
 		$(document).on('mousemove', (function(self, e) {	// Drag
@@ -91,7 +91,7 @@ jsCow.res.view.resizablehandler.prototype = {
 					self.dom.main.css('left', self.newWinPosX );
 					self.dom.main.css('top', self.newWinPosY );
 				}
-			}
+			};
 		})(this, e));
 		
 	},
@@ -105,21 +105,31 @@ jsCow.res.view.resizablehandler.prototype = {
 				.addClass('jsc-resizablehandler');
 			
 			// Width and Height
-			if (e.data.width) this.dom.main.width( e.data.width );
-			if (e.data.height) this.dom.content.height( e.data.height );
-			
+			if (e.data.width) {
+				this.dom.main.width( e.data.width );
+			}
+			if (e.data.height) {
+				this.dom.content.height( e.data.height );
+			}
+
 			// Fixed position in browser
-			if (e.data.top) this.dom.main.css({ 
-				top:e.data.top
-			});
-			if (e.data.left) this.dom.main.css({ 
-				left: e.data.left
-			});
-			
+			if (e.data.top) {
+				this.dom.main.css({ 
+					top:e.data.top
+				});
+			}
+			if (e.data.left) {
+				this.dom.main.css({ 
+					left: e.data.left
+				});
+			}
+
 			// z - Index
-			if (e.data.zindex) this.dom.main.css({ 
-				zindex:e.data.zindex
-			});
+			if (e.data.zindex) {
+				this.dom.main.css({ 
+					zindex:e.data.zindex
+				});
+			}
 			
 			if (e.data.visible) {
 				this.dom.main.show();

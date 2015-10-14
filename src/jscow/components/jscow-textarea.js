@@ -128,7 +128,7 @@ jsCow.res.view.textarea.prototype = {
 							value: self.dom.field.val()
 						});
 					}
-				}
+				};
 			})(this, e)
 			
 		).keydown(
@@ -140,7 +140,7 @@ jsCow.res.view.textarea.prototype = {
 							value: self.dom.field.val()
 						});
 					}
-				}
+				};
 			})(this, e)
 			
 		);

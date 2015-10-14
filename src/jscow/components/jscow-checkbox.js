@@ -38,7 +38,7 @@ jsCow.res.model.checkbox = function() {
 		checked: false,
 		value: false,
 		label: false
-	}
+	};
 
 };
 jsCow.res.model.checkbox.prototype = {
@@ -70,7 +70,7 @@ jsCow.res.view.checkbox.prototype = {
 				if (e.data.enabled) {
 					self.trigger("toggle");
 				}
-			}
+			};
 		})(this, e));
 		
 	},

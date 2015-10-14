@@ -1,5 +1,5 @@
 
-jsCow.res.components.text = function() { }
+jsCow.res.components.text = function() { };
 jsCow.res.components.text.prototype = {
 
 	init: function() {
@@ -15,8 +15,9 @@ jsCow.res.components.text.prototype = {
 		
 		if (typeof text !== 'undefined' && typeof text === 'string') {
 			
-			if (typeof wrapper === 'undefined') 
+			if (typeof wrapper === 'undefined') {
 				wrapper = false;
+			}
 			
 			this.trigger('text', {
 				text: text,
@@ -28,7 +29,7 @@ jsCow.res.components.text.prototype = {
 		return this;
 	}
 	
-}
+};
 
 jsCow.res.model.text = function() {
 	

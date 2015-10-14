@@ -1,5 +1,5 @@
 
-jsCow.res.components.panel = function() { }
+jsCow.res.components.panel = function() { };
 jsCow.res.components.panel.prototype = {
 
 	init: function() {
@@ -43,7 +43,7 @@ jsCow.res.components.panel.prototype = {
 		return this;
 	}
 	
-}
+};
 
 jsCow.res.model.panel = function() {
 	
@@ -80,7 +80,7 @@ jsCow.res.view.panel.prototype = {
 				if (e.data.enabled) {
 					self.trigger("toggle");
 				}
-			}
+			};
 		})(this, e));
 		
 		this.dom.arrow = $('<i/>').addClass('fa fa-arrow-left').appendTo( this.dom.titlebar );

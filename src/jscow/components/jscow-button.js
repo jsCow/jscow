@@ -1,5 +1,5 @@
 
-jsCow.res.components.button = function() { }
+jsCow.res.components.button = function() {};
 jsCow.res.components.button.prototype = {
 
 	init: function() {
@@ -43,20 +43,21 @@ jsCow.res.components.button.prototype = {
 		return this;
 	},
 	
-	icon: function(options) {
+	icon: function(o) {
 		
-		
-		if ( typeof options === 'undefined') {
+		var options;
+
+		if ( typeof o === 'undefined') {
 
 			options = false;
 
-		} else if ( typeof options === 'object') {
+		} else if ( typeof o === 'object') {
 
-			var options = $.extend(true, {
+			options = $.extend(true, {
 				direction: 'l',
 				name: 'user',
 				prefix: 'fa fa-'
-			}, options);
+			}, o);
 
 		}
 
@@ -67,7 +68,7 @@ jsCow.res.components.button.prototype = {
 		return this;
 	}
 	
-}
+};
 
 jsCow.res.model.button = function() {
 	
@@ -109,7 +110,7 @@ jsCow.res.view.button.prototype = {
 						self.dom.main.addClass('jsc-btn-hover');
 						self.trigger("mouseover");
 					}
-				}
+				};
 			})(this, e),
 			
 			(function(self, e) {
@@ -118,7 +119,7 @@ jsCow.res.view.button.prototype = {
 						self.dom.main.removeClass('jsc-btn-hover');
 						self.trigger("mouseout");
 					}
-				}
+				};
 			})(this, e)
 			
 		).mousedown( 
@@ -129,7 +130,7 @@ jsCow.res.view.button.prototype = {
 						self.dom.main.addClass('jsc-btn-press');
 						self.trigger("press");
 					}
-				}
+				};
 			})(this, e)
 			
 		).mouseup( 
@@ -140,7 +141,7 @@ jsCow.res.view.button.prototype = {
 						self.dom.main.removeClass('jsc-btn-press');
 						self.trigger("pressed");
 					}
-				}
+				};
 			})(this, e)
 			
 		).click( 
@@ -151,7 +152,7 @@ jsCow.res.view.button.prototype = {
 						self.dom.main.removeClass('jsc-btn-press');
 						self.trigger("click");
 					}
-				}
+				};
 			})(this, e)
 			
 		);

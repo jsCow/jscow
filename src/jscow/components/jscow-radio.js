@@ -41,7 +41,7 @@ jsCow.res.model.radio = function() {
 		value: false,
 		radioGroup: false,
 		label: false
-	}
+	};
 
 };
 jsCow.res.model.radio.prototype = {
@@ -73,7 +73,7 @@ jsCow.res.view.radio.prototype = {
 				if (e.data.enabled) {
 					self.trigger("select");
 				}
-			}
+			};
 		})(this, e));
 		
 	},

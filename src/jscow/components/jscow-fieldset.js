@@ -1,5 +1,5 @@
 
-jsCow.res.components.fieldset = function() { }
+jsCow.res.components.fieldset = function() { };
 jsCow.res.components.fieldset.prototype = {
 
 	init: function() {
@@ -22,7 +22,7 @@ jsCow.res.components.fieldset.prototype = {
 		return this;
 	}
 
-}
+};
 
 jsCow.res.model.fieldset = function() {
 	

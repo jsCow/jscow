@@ -92,8 +92,7 @@ jsCow.res.model.textfield = function() {
 		visible: true,
 		value: "",
 		type: "text",
-		state: false,
-		type: 'text'
+		state: false
 	};
 	
 };
@@ -128,7 +127,7 @@ jsCow.res.view.textfield.prototype = {
 							value: self.dom.field.val()
 						});
 					}
-				}
+				};
 			})(this, e)
 			
 		).keydown(
@@ -140,7 +139,7 @@ jsCow.res.view.textfield.prototype = {
 							value: self.dom.field.val()
 						});
 					}
-				}
+				};
 			})(this, e)
 			
 		);

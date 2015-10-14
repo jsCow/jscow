@@ -8,16 +8,24 @@ jsCow.res.core.events.eventsManager = function() {
 jsCow.res.core.events.eventsManager.prototype = {
 	
 	cmp: function(cmp) {
-		if (cmp != undefined) {
+		if (cmp !== undefined) {
 			this.__cmp__ = cmp;
 			return this;
 		}else{
 			return this.__cmp__;
 		}
 	},
+
+	isNot: function(local) {
+		if (local) {
+			return false;
+		} else {
+			return true;
+		}
+	},
 	
 	parent: function(parentClass) {
-		if (parentClass != undefined) {
+		if (parentClass !== undefined) {
 			this.parentClass = parentClass;
 			return this;
 		}else{
@@ -25,22 +33,30 @@ jsCow.res.core.events.eventsManager.prototype = {
 		}
 	},
 	
-	on: function(event, handler, local) {
+	on: function(event, h, l) {
 		
-		if (handler == undefined) handler = false;
+		var handler = h;
+		var local = l;
+
+		if (handler === undefined) {
+			handler = false;
+		}
 		var sender = this.cmp();
 		var parentClass = this.parentClass;
-		if (typeof local == 'undefined' || local == true) 
-			var local = true; 
-		else 
+		if (typeof local === 'undefined' || local === true) {
+			local = true; 
+		} else { 
 			local = false;
-		
-		if (event != undefined && sender) {
+		}
+
+		if (event !== undefined && sender) {
 			
-			if (typeof handler == "function") {
+			if (typeof handler === "function") {
 				
-				if (jsCow.events[event] == undefined) jsCow.events[event] = Array();
-				
+				if (jsCow.events[event] === undefined) {
+					jsCow.events[event] = Array();
+				}
+
 				jsCow.events[event].push({
 					event: event,
 					handler: handler,
@@ -50,7 +66,9 @@ jsCow.res.core.events.eventsManager.prototype = {
 				});
 				
 			}else{
-				if (jsCow.debug.events) console.warn("There is not defined a handler method for event '" + event + "' in '"+this.cmp().id()+"'. The event trigger will be ignored!");
+				if (jsCow.debug.events) {
+					console.warn("There is not defined a handler method for event '" + event + "' in '"+this.cmp().id()+"'. The event trigger will be ignored!");
+				}
 			}
 			
 		}else{
@@ -63,63 +81,74 @@ jsCow.res.core.events.eventsManager.prototype = {
 	off: function(event, cmp) {
 		if (jsCow.events[event]) {
 			$.each(jsCow.events[event], function(i,evt) {
-				if (jsCow.events[event][i].getID() == cmp.getID()) {
+				if (jsCow.events[event][i].getID() === cmp.getID()) {
 					jsCow.events[event][i].slice(i,1);
 				}
 			});
 		}
 	},
 	
-	trigger: function (event, data, local) {
+	trigger: function (event, d, l) {
 		
-		if (typeof data === 'undefined' || !data) 
-			var data = {};
+		var data = d;
+		var local = l;
+
+		if (typeof data === 'undefined' || !data) {
+			data = {};
+		}
 		
 		if (data) {
 			
 			var self = this;
 			
-			if (typeof local == 'undefined' || !local) var local = this.cmp(); else var local = false;
-			
-			if (jsCow.events[event] != undefined) {
+			if (typeof local === 'undefined' || !local) {
+				local = this.cmp(); 
+			} else {
+				local = false;
+			}
+
+			if (jsCow.events[event] !== undefined) {
 				$.each(jsCow.events[event], (function(self, event, data, local) {
 					return function (i, e) {
 						
-						if (typeof local == "object" && local.id() === e.sender.id() && e.local) {
+						if (typeof local === "object" && local.id() === e.sender.id() && e.local) {
 							
 							setTimeout(
 								function() {
 									
-									if (jsCow.debug.events) console.log("local :: trigger event ", "'"+e.event+"'", "from", "'"+self.cmp().id()+"' for '"+e.that.id()+"'.");
-									
+									if (jsCow.debug.events) {
+										console.log("local :: trigger event ", "'"+e.event+"'", "from", "'"+self.cmp().id()+"' for '"+e.that.id()+"'.");
+									}
+
 									e.handler.apply(e.that, [{ 
 										data: data,
 										sender: self.cmp(),
 										date: new Date()
 									}]);
-								}
-								, 0
+								}, 0
 							);
 							
-						}else if (!local === e.local) {
+						} else if (self.isNot(local) === e.local) {
 							
 							setTimeout(
 								function() {
 									
-									if (jsCow.debug.events) console.log("global :: trigger even", "'"+e.event+"'", "from", "'"+self.cmp().id()+"' for '"+e.that.id()+"'.");
-									
+									if (jsCow.debug.events) {
+										console.log("global :: trigger even", "'"+e.event+"'", "from", "'"+self.cmp().id()+"' for '"+e.that.id()+"'.");
+									}
+
 									e.handler.apply(e.that, [{ 
 										data: data,
 										sender: self.cmp(),
 										date: new Date()
 									}]);
-								}
-								, 0
+
+								}, 0
 							);
 							
 						}
 						
-					}
+					};
 				})(self, event, data, local));
 			}
 			
@@ -155,7 +184,7 @@ jsCow.res.core.events.eventsManager.prototype = {
 				$.each(children, (function(self) {
 					return function(i,c) {
 						c.bubbleIn(event, data, local);
-					}
+					};
 				})(this));
 
 			}
@@ -188,4 +217,4 @@ jsCow.res.core.events.eventsManager.prototype = {
 		return bubble;
 	}
 	
-}
+};

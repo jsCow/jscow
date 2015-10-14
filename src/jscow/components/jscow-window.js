@@ -19,10 +19,13 @@ jsCow.res.components.window.prototype = {
 		return this;
 	},
 	
-	cloasable: function(cloasable) {
+	cloasable: function(c) {
 		
-		if (typeof cloasable === 'undefined')
-			var cloasable = true;
+		var closable;
+
+		if (typeof c === 'undefined') {
+			cloasable = true;
+		}
 			
 		this.trigger('cloasable', {
 			cloasable: cloasable
@@ -31,11 +34,14 @@ jsCow.res.components.window.prototype = {
 		return this;
 	},
 	
-	maximizable: function(maximizable) {
+	maximizable: function(max) {
 		
-		if (typeof maximizable === 'undefined')
-			var maximizable = true;
-			
+		var maximizable;
+
+		if (typeof max === 'undefined') {
+			maximizable = true;
+		}
+		
 		this.trigger('maximizable', {
 			maximizable: maximizable
 		});
@@ -43,13 +49,16 @@ jsCow.res.components.window.prototype = {
 		return this;
 	},
 	
-	miniimizable: function(miniimizable) {
+	minimizable: function(min) {
 		
-		if (typeof miniimizable === 'undefined')
-			var miniimizable = true;
-			
-		this.trigger('miniimizable', {
-			miniimizable: miniimizable
+		var minimizable;
+
+		if (typeof min === 'undefined') {
+			minimizable = true;
+		}
+		
+		this.trigger('minimizable', {
+			minimizable: minimizable
 		});
 		
 		return this;
@@ -71,7 +80,7 @@ jsCow.res.model.window = function() {
 		maximizable: false,
 		minimizable: false,
 		zindex: 0
-	}
+	};
 
 };
 jsCow.res.model.window.prototype = {
@@ -126,7 +135,7 @@ jsCow.res.view.window.prototype = {
 				self.winPosX = self.mousePosX - offsetLeft;
   				self.winPosY = self.mousePosY - offsetTop;
 				self.dragstart = true;
-			}
+			};
 		})(this, e)).on('mouseup', (function(self, e) {		// Stop Drag
 			return function() {
 				self.dragstart = false;
@@ -134,7 +143,7 @@ jsCow.res.view.window.prototype = {
 					top: self.newWinPosY,
 					left: self.newWinPosX
 				});
-			}
+			};
 		})(this, e));
 		
 		$(document).on('mousemove', (function(self, e) {	// Drag
@@ -147,7 +156,7 @@ jsCow.res.view.window.prototype = {
 					self.dom.main.css('left', self.newWinPosX );
 					self.dom.main.css('top', self.newWinPosY );
 				}
-			}
+			};
 		})(this, e));
 		
 	},
@@ -174,7 +183,7 @@ jsCow.res.view.window.prototype = {
 					this.close.on('click', (function(self) {
 						return function(e) {
 							self.trigger('close');
-						}
+						};
 					})(this));
 					this.close.run();
 				}
@@ -185,24 +194,36 @@ jsCow.res.view.window.prototype = {
 			}
 			
 			// Set title and icon
-			if (e.data.title) this.dom.title.html(e.data.title);
+			if (e.data.title) {
+				this.dom.title.html(e.data.title);
+			}
 			
 			// Width and Height
-			if (e.data.width) this.dom.main.width( e.data.width );
-			if (e.data.height) this.dom.content.height( e.data.height );
-			
+			if (e.data.width) {
+				this.dom.main.width( e.data.width );
+			} 
+			if (e.data.height) {
+				this.dom.content.height( e.data.height );
+			}
+
 			// Fixed position in browser
-			if (e.data.top) this.dom.main.css({ 
-				top:e.data.top
-			});
-			if (e.data.left) this.dom.main.css({ 
-				left: e.data.left
-			});
-			
+			if (e.data.top) {
+				this.dom.main.css({ 
+					top:e.data.top
+				});
+			}
+			if (e.data.left) {
+				this.dom.main.css({ 
+					left: e.data.left
+				});
+			}
+
 			// z - Index
-			if (e.data.zindex) this.dom.main.css({ 
-				zindex:e.data.zindex
-			});
+			if (e.data.zindex) {
+				this.dom.main.css({ 
+					zindex:e.data.zindex
+				});
+			}
 			
 			if (e.data.visible) {
 				this.dom.main.show();

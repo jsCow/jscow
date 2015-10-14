@@ -114,13 +114,16 @@ jsCow = (function() {
 			
 			if (index && value) {
 			
-				if (this.cache[index] == undefined) this.cache[index] = false;
+				if (this.cache[index] === undefined) {
+					this.cache[index] = false;
+				}
+
 				this.cache[index] = value;
 				
 			}else{
 				if (!index) {
 					return this.cache;
-				}else if (this.cache[index]) {
+				} else if (this.cache[index]) {
 					return this.cache[index];
 				}
 			}

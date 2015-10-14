@@ -25,12 +25,11 @@ component.prototype = {
 	@param {Object} c Referenz auf die im Framework registrierte Komponenten-Klasse.
 	@return {Object} Referenz auf die Instanz der neuen Komponente
 	**/
-	get: function(c, preConfig) {
+	get: function(cmpClassReference, preConfig) {
 		
-		var c = new c;
+		var c = new cmpClassReference();
 		
 		if (typeof c === 'object') {
-			
 			
 			/**
 			...
@@ -39,7 +38,7 @@ component.prototype = {
 			*/
 			if (typeof preConfig !== 'undefined') {
 				c.__preConfig__ = preConfig;
-			}else{
+			} else {
 				c.__preConfig__ = {};
 			}
 
@@ -172,7 +171,7 @@ component.prototype = {
 								if ( content ) {
 									content.append( child.placeholder() );
 								} else { 
-									var content = self.placeholder();
+									content = self.placeholder();
 								}
 								
 								child.parent(self);
@@ -182,7 +181,7 @@ component.prototype = {
 								
 							}
 							
-						}
+						};
 					})(this));
 					
 					return this;
@@ -200,7 +199,7 @@ component.prototype = {
 					if ( placeholder ) {
 						
 						this.__cfg__.placeholder = placeholder;
-						this.__cfg__.placeholder.appendTo(this.target())
+						this.__cfg__.placeholder.appendTo(this.target());
 
 						return this;
 
@@ -219,9 +218,9 @@ component.prototype = {
 				@return {Object} Referenz der aktuellen Komponente.
 				@chainable
 				**/
-				target: function(target) {
+				target: function(t) {
 					
-					var target = target;
+					var target = t;
 					
 					if (typeof target === 'undefined') {
 						
@@ -231,14 +230,14 @@ component.prototype = {
 						
 						return this.__cfg__.target;
 						
-					}else{
+					} else {
 						
 						if (!this.parent() && typeof target === 'undefined') {
 
 							this.__cfg__.target = $('body');
 							target = this.__cfg__.target;
 
-						}else{
+						} else {
 							
 							this.__cfg__.target = target;
 							this.placeholder().appendTo(this.__cfg__.target);
@@ -259,26 +258,26 @@ component.prototype = {
 				
 				defineVariables: function() {
 					
-					if(!this.__preConfig__) this.__preConfig__ = {};
+					if(!this.__preConfig__) {this.__preConfig__ = {};}
 					
-					if(!this.__children__) this.__children__ = [];
-					if(!this.extension) this.extension = {};
+					if(!this.__children__) {this.__children__ = [];}
+					if(!this.extension) {this.extension = {};}
 					
-					if(!this.__cfg__) this.__cfg__ = {};
-					if(!this.__cfg__.__execInit__) this.__cfg__.__execInit__ = false;
-					if(!this.__cfg__.apps) this.__cfg__.apps = [];
-					if(!this.__cfg__.parent) this.__cfg__.parent = false;
-					if(!this.__cfg__.dom) this.__cfg__.dom = {};
-					if(!this.__cfg__.rendered) this.__cfg__.rendered = [];
-					if(!this.__cfg__.placeholder) this.__cfg__.placeholder = false;
-					if(!this.__cfg__.initialized) this.__cfg__.initialized = [];
-					if(!this.__cfg__.target) this.__cfg__.target = false;
+					if(!this.__cfg__) {this.__cfg__ = {};}
+					if(!this.__cfg__.__execInit__) {this.__cfg__.__execInit__ = false;}
+					if(!this.__cfg__.apps) {this.__cfg__.apps = [];}
+					if(!this.__cfg__.parent) {this.__cfg__.parent = false;}
+					if(!this.__cfg__.dom) {this.__cfg__.dom = {};}
+					if(!this.__cfg__.rendered) {this.__cfg__.rendered = [];}
+					if(!this.__cfg__.placeholder) {this.__cfg__.placeholder = false;}
+					if(!this.__cfg__.initialized) {this.__cfg__.initialized = [];}
+					if(!this.__cfg__.target) {this.__cfg__.target = false;}
 					
-					if(!this.events) this.events = false;
+					if(!this.events) {this.events = false;}
 					
-					if(!this.__model__) this.__model__ = {};
-					if(!this.__view__) this.__view__ = [];
-					if(!this.__controller__) this.__controller__ = [];
+					if(!this.__model__) {this.__model__ = {};}
+					if(!this.__view__) {this.__view__ = [];}
+					if(!this.__controller__) {this.__controller__ = [];}
 					
 				},
 				
@@ -294,11 +293,11 @@ component.prototype = {
 				append: function(child) {
 					window.setTimeout((function(self, child) {
 						return function() {
-							if (!child.config.__execInit__ && typeof child == 'object') {
+							if (!child.config.__execInit__ && typeof child === 'object') {
 								self.add(child);
 								child.__init();
 							}
-						}
+						};
 					}(this, child)), 0);
 					
 					return this;
@@ -321,7 +320,7 @@ component.prototype = {
 							
 							self.defineVariables();
 							
-							if (target && !child.config.__execInit__ && typeof child == 'object') {
+							if (target && !child.config.__execInit__ && typeof child === 'object') {
 								
 								var placeholder = self.createPlaceholder();
 								target.append(placeholder);
@@ -335,7 +334,7 @@ component.prototype = {
 								child.__init();
 								
 							}
-						}
+						};
 					}(this)), 0);
 					
 					return child;
@@ -353,7 +352,7 @@ component.prototype = {
 					
 					child.defineVariables();
 					
-					if (target && !child.config.__execInit__ && typeof child == 'object') {
+					if (target && !child.config.__execInit__ && typeof child === 'object') {
 						
 						child.parent(this);
 						child.target(this.target());
@@ -378,9 +377,8 @@ component.prototype = {
 				@chainable
 				**/
 				del: function() {	
-					debugger;
 					
-					if (typeof this.parent() != 'undefined' && this.parent()) {
+					if (typeof this.parent() !== 'undefined' && this.parent()) {
 						this.parent().remove(this);
 					}
 					
@@ -408,24 +406,24 @@ component.prototype = {
 					var self = this;
 					var list = this.__children__;
 					
-					if (typeof cmp != 'undefined') {
+					if (typeof cmp !== 'undefined') {
 						
 						// Delete a specific child component
 						if (list.length > 0) {
 							$(list).each(function(i,c) {
-								if (typeof c != 'undefined' && typeof cmp == 'object' && typeof cmp != 'undefined' && c.id() == cmp.id()) {
+								if (typeof c !== 'undefined' && typeof cmp === 'object' && typeof cmp !== 'undefined' && c.id() === cmp.id()) {
 									self.__children__.splice(i,1);
 									c.del();
 								}
 							});
 						}
 						
-					}else if (typeof cmp != 'string' && cmp == '*') {
+					}else if (typeof cmp !== 'string' && cmp === '*') {
 						
 						// Delete all child components
 						if (list.length > 0) {
 							$(list).each(function(i,c) {
-								if (typeof c != 'undefined') {
+								if (typeof c !== 'undefined') {
 									self.__children__.splice(i,1);
 									c.del();
 								}
@@ -447,7 +445,7 @@ component.prototype = {
 					this.readyToShow(this);
 					
 					// If exists the customized init method will be executed
-					if (this.extension.init && typeof this.extension.init == "function") {
+					if (this.extension.init && typeof this.extension.init === "function") {
 						this.extension.init();
 					}
 					
@@ -456,9 +454,9 @@ component.prototype = {
 						$.each(this.__children__, function(i, c) {
 							c.__init();
 						});
-					}else{
+					} else {
 						this.__show(true);
-					};
+					}
 					
 					this.__cfg__.__execInit__ = true;
 					
@@ -473,7 +471,7 @@ component.prototype = {
 					this.showComplete(this);
 					
 					// Execute show
-					if (showNow || (this.__cfg__.rendered.length == this.__children__.length)) {
+					if (showNow || (this.__cfg__.rendered.length === this.__children__.length)) {
 						
 						this.view().init();
 						
@@ -481,8 +479,10 @@ component.prototype = {
 						this.events.trigger("controller.init");
 						
 						// show state - completed
-						if (this.parent()) this.parent().__show();
-						
+						if (this.parent()) {
+							this.parent().__show();
+						}
+
 					}
 					
 				},
@@ -500,11 +500,13 @@ component.prototype = {
 				**/
 				extend: function(method, root) {
 					
-					if (root == true) {
+					var methodList;
+
+					if (root === true) {
 						
 						$.extend(true, this, method);
 						
-					}else{
+					} else {
 						
 						var _this = this;
 						
@@ -512,7 +514,7 @@ component.prototype = {
 							
 							var ext = function() {};
 							
-							var methodList = {};
+							methodList = {};
 							
 							$.each(method, function(i, m) {
 								
@@ -527,11 +529,11 @@ component.prototype = {
 							
 							$.extend(true, ext.prototype, methodList);
 							
-							this.extension = new ext;
+							this.extension = new ext();
 							
-						}else{
+						} else {
 							
-							var methodList = {};
+							methodList = {};
 							$.each(method, function(i, m) {
 								
 								methodList[i] = (function( _super, m, i ) {
@@ -559,7 +561,7 @@ component.prototype = {
 				**/
 				move: function(target) {
 					
-					if (target != 'undefined' && typeof target == 'object') {
+					if (target !== 'undefined' && typeof target === 'object') {
 						
 						var targetViewContent = target.view().content();
 						
@@ -593,7 +595,7 @@ component.prototype = {
 						});
 						
 						return this;
-					}else{
+					} else {
 						return this.__cfg__.id;
 					}
 				},
@@ -616,9 +618,9 @@ component.prototype = {
 				**/
 				model: function() {
 					
-					if (this.__model__ == 'undefined' || !this.__model__) {
+					if (this.__model__ === 'undefined' || !this.__model__) {
 						return false;
-					}else{
+					} else {
 						return this.__model__;
 					}
 					
@@ -632,10 +634,11 @@ component.prototype = {
 				@return {Object} Referenz auf den View der Komponente.
 				**/
 				view: function() {
-					if (this.__view__ == undefined)
+					if (this.__view__ === undefined) {
 						return false;
-					else
+					} else {
 						return this.__view__;
+					}
 				},
 				
 				/**
@@ -646,10 +649,11 @@ component.prototype = {
 				@return {Object} Referenz auf den Controller-Manager der Komponente.
 				**/
 				controller: function() {
-					if (this.__controller__ == undefined)
+					if (this.__controller__ === undefined) {
 						return false;
-					else
+					} else {
 						return this.__controller__;
+					}
 				},
 				
 				/**
@@ -667,7 +671,7 @@ component.prototype = {
 						this.model().data[config] = value;
 						this.trigger("update", this.config());
 						
-					}else{
+					} else {
 						
 						if (config) {
 							
@@ -698,21 +702,29 @@ component.prototype = {
 					if (parent) {
 						this.__cfg__.parent = parent;
 						return this;
-					}else{
+					} else {
 						return this.__cfg__.parent;
 					}
 					
 				},
 				
 				readyToShow: function(c) {
-					if(this.__cfg__.initialized) this.__cfg__.initialized = [];
+					
+					if(this.__cfg__.initialized) {
+						this.__cfg__.initialized = [];
+					}
+
 					this.__cfg__.initialized.push(c);
 					
 					return this;
 				},
 
 				showComplete: function(c) {
-					if (!this.__cfg__.rendered) this.__cfg__.rendered = [];
+					
+					if (!this.__cfg__.rendered) {
+						this.__cfg__.rendered = [];
+					}
+
 					this.__cfg__.rendered.push(c);
 					
 					return this;
@@ -733,15 +745,16 @@ component.prototype = {
 				**/
 				addModel: function(m) {
 					
-					this.__model__ = new m;
+					this.__model__ = new m();
 					this.__model__.__controller__ = this.__controller__;
-					if (typeof this.__model__.data === 'undefined') 
+					if (typeof this.__model__.data === 'undefined') {
 						this.__model__.data = {};
+					}
 					
 					//
 					// Set events manager
 					
-					var eventsManager = new jsCow.res.core.events.eventsManager;
+					var eventsManager = new jsCow.res.core.events.eventsManager();
 					eventsManager.cmp(this);
 					eventsManager.parent(this.__model__);
 					this.__model__.events = eventsManager;
@@ -753,17 +766,29 @@ component.prototype = {
 							if (index) {
 								
 								if (this.data[index]) {
-									if (typeof this.data[index] === 'object') this.data[index] = {};
-									if (typeof this.data[index] === 'string') this.data[index] = "";
-									if (this.data[index] instanceof Array) this.data[index] = [];
+									if (typeof this.data[index] === 'object') {
+										this.data[index] = {};
+									}
+									if (typeof this.data[index] === 'string') {
+										this.data[index] = "";
+									}
+									if (this.data[index] instanceof Array) {
+										this.data[index] = [];
+									}
 								}
 								
-							}else{
+							} else {
 								
-								if (typeof this.data === 'object') this.data = {};
-								if (typeof this.data === 'string') this.data = "";
-								if (this.data instanceof Array) this.data = [];
-								
+								if (typeof this.data === 'object') {
+									this.data = {};
+								}
+								if (typeof this.data === 'string') {
+									this.data = "";
+								}
+								if (this.data instanceof Array) {
+									this.data = [];
+								}
+
 							}
 							
 							return this;
@@ -789,7 +814,7 @@ component.prototype = {
 								this.__id__ = id;
 								
 								return this;
-							}else{
+							} else {
 								return this.__id__;
 							}
 						},
@@ -930,20 +955,23 @@ component.prototype = {
 					if (option && value) {
 						
 						// Set value by option
-						if (this.__cfg__[option] == undefined) this.__cfg__[option] = false;
+						if (this.__cfg__[option] === undefined) {
+							this.__cfg__[option] = false;
+						}
+
 						this.__cfg__[option] = value;
 						
 						return this;
 						
 					}else if (option && !value) {
 						
-						if (typeof option == 'object') {
+						if (typeof option === 'object') {
 							$.extend(true, this.__cfg__, option);
 						}
 						
 						return this;
 						
-					}else{
+					} else {
 						return this.__cfg__;
 					}
 					
@@ -1140,7 +1168,7 @@ component.prototype = {
 			//
 			// Set events manager
 			
-			var eventsManager = new jsCow.res.core.events.eventsManager;
+			var eventsManager = new jsCow.res.core.events.eventsManager();
 			eventsManager.cmp(c);
 			eventsManager.parent(c);
 			c.events = eventsManager;
@@ -1166,7 +1194,7 @@ component.prototype = {
 								
 								if (args instanceof Array) {
 									self[i].apply(self, args);
-								}else{
+								} else {
 									self[i].apply(self, [args]);
 								}
 								
@@ -1187,7 +1215,7 @@ component.prototype = {
 			//
 			// Set controller handler
 			
-			var controllerHandler = new jsCow.res.core.mvc.controllerHandler;
+			var controllerHandler = new jsCow.res.core.mvc.controllerHandler();
 			controllerHandler.events = c.events;
 			controllerHandler.__cmp__ = c;
 			c.__controller__ = controllerHandler;
@@ -1196,7 +1224,7 @@ component.prototype = {
 			//
 			// Set view handler
 			
-			var viewsManager = new jsCow.res.core.mvc.viewsManager;
+			var viewsManager = new jsCow.res.core.mvc.viewsManager();
 			viewsManager.__cmp__ = c;
 			c.__view__ = viewsManager;
 			
@@ -1214,7 +1242,6 @@ component.prototype = {
 			jsCow.componentsObjectList[cIndex] = c;
 			
 			c = null;
-			delete c;
 			
 			return jsCow.componentsObjectList[cIndex];
 			
@@ -1235,12 +1262,18 @@ component.prototype = {
 	@param {String} cid ID der gesuchten Komponente.
 	@return {Object} Referenz auf die gesuchte Instanz der Komponente. Wird keine Komponente gefunden, wird false zur&uuml;ckgegeben.
 	**/
-	find: function(cid) {
-		if (typeof cid === 'object') var cid = cid.id();
+	find: function(component) {
 		
-		var foundCmp = false;
+		var cid,
+			foundCmp;
+
+		if (typeof component === 'object') {
+			cid = component.id();
+		}
+		
+		foundCmp = false;
 		$.each(jsCow.componentsObjectList, function(i, c) {
-			if (c.id() == cid) {
+			if (c.id() === component) {
 				foundCmp = c;
 			}
 		});
@@ -1248,6 +1281,6 @@ component.prototype = {
 		return foundCmp;
 	}
 	
-}
+};
 
 jsCow.components = new component();

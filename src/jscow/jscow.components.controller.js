@@ -271,7 +271,7 @@ jsCow.res.core.mvc.controllerHandler.prototype = {
 
 		var length = this.length();
 		
-		this.controllerList[length] = new c;
+		this.controllerList[length] = new c();
 		this.controllerList[length].__view__ = this.cmp().view();
 		this.controllerList[length].__model__ = this.cmp().model();
 		this.controllerList[length].__cmp__ = this.cmp();
@@ -280,7 +280,7 @@ jsCow.res.core.mvc.controllerHandler.prototype = {
 		//
 		// Set events manager
 		
-		var eventsManager = new jsCow.res.core.events.eventsManager;
+		var eventsManager = new jsCow.res.core.events.eventsManager();
 		eventsManager.cmp(this.cmp());
 		eventsManager.parent(this.controllerList[length]);
 		this.controllerList[length].events = eventsManager;
@@ -328,10 +328,13 @@ jsCow.res.core.mvc.controllerHandler.prototype = {
 	@method del
 	@param {Object} c Referenz auf die Instanz des Controller.
 	**/
-	del: function(c) {
+	del: function(controller) {
 		
-		var c = new c;
-		var controllerList = this.controllers();
+		var c,
+			controllerList;
+
+		c = new controller();
+		controllerList = this.controllers();
 		
 		$.each(controllerList, function(i, controller) {
 			
@@ -341,8 +344,7 @@ jsCow.res.core.mvc.controllerHandler.prototype = {
 			
 		});
 		
-		delete c;
-		
+		return this;
 	}
 	
 };

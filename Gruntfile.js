@@ -101,6 +101,8 @@ module.exports = function(grunt) {
 				eqeqeq: true,
 				eqnull: true,
 				browser: true,
+				maxparams: 4,
+				notypeof: true,
 				globals: {
 					jQuery: true
 				}
@@ -135,24 +137,30 @@ module.exports = function(grunt) {
 	
 	// Default task(s).
 	grunt.registerTask('default', [
+		'jshint',
 		'clean',
 		'less',
-		'jshint',
 		'concat',
 		'uglify'
-		/*,
-		'yuidoc'*/
 	]);
 
 	// Debug and Development task(s).
 	grunt.registerTask('dev', [
+		'jshint',
 		'clean',
 		'less',
-		'jshint',
 		'copy',
 		'concat'
-		/*,
-		'yuidoc'*/
+	]);
+
+	// All task(s).
+	grunt.registerTask('all', [
+		'jshint',
+		'clean',
+		'less',
+		'copy',
+		'concat',
+		'yuidoc'
 	]);
 
 };

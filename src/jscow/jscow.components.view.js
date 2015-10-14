@@ -24,9 +24,9 @@ jsCow.res.core.mvc.viewsManager = function() {
 };
 jsCow.res.core.mvc.viewsManager.prototype = {
 	
-	init: function(cfg) {
+	init: function(config) {
 		
-		var cfg = cfg;
+		var cfg = config;
 		var self = this;
 		var viewList = this.list();
 		
@@ -34,9 +34,9 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			
 			if (!view.isInit) {
 				
-				if (view.dom != 'undefined' && view.dom.main != 'undefined') {
+				if (view.dom !== 'undefined' && view.dom.main !== 'undefined') {
 					
-					if (i == 0 && self.cmp().placeholder()) {
+					if (i === 0 && self.cmp().placeholder()) {
 						self.cmp().placeholder().replaceWith( view.dom.main );
 					}
 					
@@ -44,7 +44,7 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 						viewList[ i - 1 ].dom.main.after( view.dom.main );
 					}
 					
-				};
+				}
 				
 				view.isInit = true;
 				
@@ -76,14 +76,14 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 		var self = this;
 		var length = this.length();
 		
-		this.viewList[length] = new v;
+		this.viewList[length] = new v();
 		this.viewList[length].__cmp__ = this.cmp();
 		this.viewList[length].__cfg__ = {};
 		
 		//
 		// Set events manager
 		
-		var eventsManager = new jsCow.res.core.events.eventsManager;
+		var eventsManager = new jsCow.res.core.events.eventsManager();
 		eventsManager.cmp(this.cmp());
 		eventsManager.parent(this.viewList[length]);
 		this.viewList[length].events = eventsManager;
@@ -99,10 +99,11 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			},
 			
 			content: function() {
-				if (this.dom.content)
+				if (this.dom.content) {
 					return this.dom.content;
-				else
+				} else {
 					return false;
+				}
 			},
 			
 			appendToTarget: function() {
@@ -118,13 +119,18 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			},
 			
 			cfg: function(param) {
-				if (param == undefined) {
+				if (param === undefined) {
+					
 					return this.__cfg__;
-				}else{
-					if(this.__cfg__[param]) 
+
+				} else {
+
+					if(this.__cfg__[param]) {
 						return this.__cfg__[param];
-					else
+					} else {
 						return false;
+					}
+
 				}
 			},
 			
@@ -133,7 +139,7 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 					this.__id__ = id;
 					
 					return this;
-				}else{
+				} else {
 					return this.__id__;
 				}
 			},
@@ -189,7 +195,7 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			return function(e) {
 				e.stopPropagation();
 				self.viewList[length].trigger('view.focus');
-			}
+			};
 		}(self, length));
 		
 		
@@ -216,19 +222,19 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	@method del
 	@param {Object} v Referenz auf die Instanz des zu l&ouml;schenden View.
 	**/
-	del: function(v) {
+	del: function(view) {
 		
-		var v = new v;
+		var v = new view();
 		var viewList = this.list();
 		
 		$.each(viewList, function(i, view) {
-			if (v.id() == view.id()) {
-				if (view.dom.main != 'undefined') view.dom.main.remove();
+			if (v.id() === view.id()) {
+				if (view.dom.main !== 'undefined') {
+					view.dom.main.remove();
+				}
 				viewList.splice(i,1);
 			}
 		});
-		
-		delete v;
 		
 	},
 	
@@ -268,18 +274,26 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	@param {Object} index Index eines spezifischen DOM-Elements.
 	@return {Int} Inneren Container (jQuery) der aktuellen Komponente
 	**/
-	content: function(index) {
+	content: function(idx) {
 		
-		if (index == undefined) var index = 0; else var index = index;
-		
+		var index;
+
+		if (idx === undefined) {
+			index = 0; 
+		} else {
+			index = idx;
+		}
+
 		var self = this;
 		var viewList = this.list();
 		var content = false;
 		
 		$.each(viewList, function(i, view) {
-			if (view.dom != 'undefined' && view.dom.content != 'undefined' && typeof (view.dom.content) === "object" && (view.dom.content instanceof Array)) {
-				if (view.dom.content[index]) content = view.dom.content[index];
-			}else if (view.dom != undefined && view.dom.content != undefined) {
+			if (view.dom !== 'undefined' && view.dom.content !== 'undefined' && typeof (view.dom.content) === "object" && (view.dom.content instanceof Array)) {
+				if (view.dom.content[index]) {
+					content = view.dom.content[index];
+				}
+			}else if (view.dom !== undefined && view.dom.content !== undefined) {
 				content = view.dom.content;
 			}else{
 				return self.main(index);
@@ -296,17 +310,26 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	@param {Object} index Index eines spezifischen DOM-Elements.
 	@return {Int} &Auml;u&szlig;eren Container (jQuery) der aktuellen Komponente
 	**/
-	main: function(index) {
-		if (index == undefined) var index = 0; else var index = index;
+	main: function(idx) {
 		
+		var index;
+
+		if (idx === undefined) {
+			index = 0; 
+		} else {
+			index = idx;
+		}
+
 		var self = this;
 		var viewList = this.list();
 		var main = false;
 		
 		$.each(viewList, function(i, view) {
-			if (view.dom != 'undefined' && view.dom.main != 'undefined' && typeof (view.dom.main) === "object" && (view.dom.main instanceof Array)) {
-				if (view.dom.main[index]) main = view.dom.main[index];
-			}else if (view.dom != 'undefined' && view.dom.main != 'undefined') {
+			if (view.dom !== 'undefined' && view.dom.main !== 'undefined' && typeof (view.dom.main) === "object" && (view.dom.main instanceof Array)) {
+				if (view.dom.main[index]) {
+					main = view.dom.main[index];
+				}
+			}else if (view.dom !== 'undefined' && view.dom.main !== 'undefined') {
 				main = view.dom.main;
 			}else{
 				main = false;
@@ -355,7 +378,9 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	removeAll: function() {
 		var viewList = this.list();
 		$.each(viewList, function(i, view) {
-			if (view.dom.main != 'undefined') view.dom.main.remove();
+			if (view.dom.main !== 'undefined') {
+				view.dom.main.remove();
+			}
 		});
 		
 		return this.cmp();
@@ -370,7 +395,7 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	**/
 	replace: function(o, n) {
 		
-		var oV = new o;
+		var oV = new o();
 		var _this = this;
 		
 		var viewList = this.list();
@@ -389,15 +414,15 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	@method style
 	@param {String} style CSS Styles
 	**/
-	style: function(style) {
-		var style = style;
+	style: function(css) {
+		var style = css;
 		var _this = this;
 		var viewList = this.list();
 		
 		$.each(viewList, function(i, view) {
-			if (typeof style == "object") {
+			if (typeof style === "object") {
 				view.main().css(style);
-			}else if (typeof style == "string") {
+			}else if (typeof style === "string") {
 				view.main().addClass(style);
 			}
 		});
