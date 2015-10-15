@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					"gen/production/css/theme.css": "src/less/theme.less"
+					"gen/production/css/theme-min.css": "src/less/theme.less"
 				}
 			}
 		},
@@ -51,7 +51,14 @@ module.exports = function(grunt) {
 						cwd: 'src/jscow/components', 
 						src: '**/*.js',
 						dest: 'gen/production/jscow/components'
-					}
+					},
+					{
+	                    expand: true,
+	                    //dot: true,
+	                    cwd: 'node_modules/font-awesome',
+	                    src: ['fonts/*.*'],
+	                    dest: 'gen/production'
+	                }
 				]
 			}
 		},
@@ -142,6 +149,7 @@ module.exports = function(grunt) {
 		'clean',
 		'less',
 		'concat',
+		'copy',
 		'uglify'
 	]);
 
@@ -150,8 +158,8 @@ module.exports = function(grunt) {
 		'jshint',
 		'clean',
 		'less',
-		'copy',
-		'concat'
+		'concat',
+		'copy'
 	]);
 
 	// All task(s).
@@ -159,8 +167,8 @@ module.exports = function(grunt) {
 		'jshint',
 		'clean',
 		'less',
-		'copy',
 		'concat',
+		'copy',
 		'yuidoc'
 	]);
 

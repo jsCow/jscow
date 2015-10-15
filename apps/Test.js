@@ -2,56 +2,6 @@ $(function(){
 	
 	console.time('all');
 	
-	/*
-	test = jsCow.get(jsCow.res.components.panel).add([
-		
-		jsCow.get(jsCow.res.components.button, { text: 'Disable' }).on('click', function() {
-			jsCow.find('testpanel').disable();
-		}),
-		
-		jsCow.get(jsCow.res.components.button, { text: 'Enable' }).on('click', function() {
-			jsCow.find('testpanel').enable();
-		}),
-		
-		jsCow.get(jsCow.res.components.fieldset, {
-			id: 'testpanel'
-		}).add([
-			
-			jsCow.get(jsCow.res.components.fieldset, { id: 'tpTop' }),
-			
-			jsCow.get(jsCow.res.components.fieldset, { id: 'tpMiddle' }).add([
-				
-				jsCow.get(jsCow.res.components.fieldset, { disable: true, id: 'tp1' }).add([
-					
-					jsCow.get(jsCow.res.components.fieldset, { id: 'tp2' }).add(
-						
-						jsCow.get(jsCow.res.components.fieldset, { id: 'tp3' })
-						
-					)
-					
-				]),
-				
-				jsCow.get(jsCow.res.components.fieldset, { id: 'tp4' }).add([
-					
-					jsCow.get(jsCow.res.components.fieldset, { disable: true, id: 'tp5' }).add(
-						
-						jsCow.get(jsCow.res.components.fieldset, { id: 'tp6' })
-						
-					)
-					
-				])
-				
-			]),
-			
-			jsCow.get(jsCow.res.components.fieldset, { id: 'tpBottom' })
-			
-		])
-		
-	]);
-	
-	test.run();
-	*/
-	
 	toolbar = jsCow.get(jsCow.res.components.toolbar);
 	toolbar.add(
 		
@@ -174,6 +124,10 @@ $(function(){
 						});
 						
 					}, false),
+
+					jsCow.get(jsCow.res.components.layout, {
+						
+					}),
 
 					jsCow.get(jsCow.res.components.group).add([
 						
