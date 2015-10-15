@@ -13,8 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         
         <link type="text/css" rel="stylesheet" href="gen/production/css/theme-min.css" />
-		
-        <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+        
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="gen/production/jscow/jscow.min.js"></script>
         <?php 
             

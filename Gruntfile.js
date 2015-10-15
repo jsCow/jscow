@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 	                    cwd: 'node_modules/font-awesome',
 	                    src: ['fonts/*.*'],
 	                    dest: 'gen/production'
-	                }
+					}
 				]
 			}
 		},
