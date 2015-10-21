@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 		
 		clean: {
 			clean: [
-				"gen/production"
+				"dist"
 			]
 		},
 		
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					"gen/production/css/theme-min.css": "src/less/theme.less"
+					"dist/css/theme-min.css": "src/less/theme.less"
 				}
 			}
 		},
@@ -50,14 +50,14 @@ module.exports = function(grunt) {
 						expand: true, 
 						cwd: 'src/jscow/components', 
 						src: '**/*.js',
-						dest: 'gen/production/jscow/components'
+						dest: 'dist/jscow/components'
 					},
 					{
 	                    expand: true,
 	                    //dot: true,
 	                    cwd: 'node_modules/font-awesome',
 	                    src: ['fonts/*.*'],
-	                    dest: 'gen/production'
+	                    dest: 'dist'
 					}
 				]
 			}
@@ -78,10 +78,10 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: 'src/jscow/components',
 						src: '**/*.js',
-						dest: 'gen/production/jscow/components'
+						dest: 'dist/jscow/components'
 					},
 					{
-						'gen/production/jscow/jscow.min.js': ['gen/production/jscow/jscow.min.js']
+						'dist/jscow/jscow.min.js': ['dist/jscow/jscow.min.js']
 					}
 				]
 			}
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
 					'src/jscow/jscow.components.controller.js', 
 					'src/jscow/jscow.events.js'
 				],
-				dest: 'gen/production/jscow/jscow.min.js'
+				dest: 'dist/jscow/jscow.min.js'
 			}
 		},
 		
@@ -126,7 +126,7 @@ module.exports = function(grunt) {
 				url: '<%= pkg.homepage %>',
 				options: {
 					paths: 'src/jscow/',
-					outdir: 'gen/production/docs/'
+					outdir: 'dist/docs/'
 				}
 			}
 		}

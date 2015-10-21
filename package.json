@@ -1,7 +1,7 @@
 {
   "name": "jsCow",
   "description": "jsCow - Javascript Component Framework",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "license": "MIT",
   "readme": "README.md",
   "author": "Mario Linz <gelight@gmx.de>",
@@ -29,11 +29,11 @@
     "bootstrap": "latest",
     "font-awesome": "latest"
   },
+  "dependencies": {
+    
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jsCow/jsCow.git"
-  },
-  "dependencies": {
-    
   }
 }

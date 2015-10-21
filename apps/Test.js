@@ -58,16 +58,17 @@ $(function(){
 			text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
 		})
 	);
-	
 	panel1 = jsCow.get(jsCow.res.components.panel, {
 		title: 'Panel 1'
-	}).add(
+	})
+	.add(
 		jsCow.get(jsCow.res.components.button, {
 			text: 'TEST'
 		}).on('MUH', function() {
 			console.log("MUHHHHHHHHHHHHHHHHHHH");
 		}, false)
-	).add(
+	)
+	.add(
 		
 		jsCow.get(jsCow.res.components.button, { 
 			text: 'Listener global event MUH',
@@ -83,7 +84,8 @@ $(function(){
 			
 		}, false)
 		
-	).add([
+	)
+	.add([
 		
 		jsCow.get(jsCow.res.components.fieldset).add([
 			
@@ -113,6 +115,7 @@ $(function(){
 			jsCow.get(jsCow.res.components.panel).add([
 				
 				jsCow.get(jsCow.res.components.fieldset, { title: 'Fieldset Title' }).add([
+					
 					jsCow.get(jsCow.res.components.text, {
 						text: [
 							'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
@@ -173,7 +176,7 @@ $(function(){
 								label: 'Radio label'
 							}
 						})
-
+						
 					]),
 
 					jsCow.get(jsCow.res.components.checkbox, {
@@ -194,7 +197,8 @@ $(function(){
 
 				jsCow.get(jsCow.res.components.fieldset, {
 					id: 'testpanel'
-				}).add([
+				})
+				.add([
 					
 					jsCow.get(jsCow.res.components.textfield, { value: 'MUH SAGT DIE KUH...', id: 'input' }),
 					jsCow.get(jsCow.res.components.textarea, { 
@@ -239,7 +243,7 @@ $(function(){
 				
 			])
 			
-		]),
+		])
 		
 	]);
 	
