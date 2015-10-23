@@ -17,7 +17,11 @@ jsCow.res.model.layout = function() {
 	
 	this.data = {
 		enabled: true,
-		visible: true
+		visible: true,
+		flex: {
+			display: 'flex',
+			direction: 'row'
+		}
 	};
 	
 };
@@ -32,8 +36,8 @@ jsCow.res.model.layout.prototype = {
 jsCow.res.view.layout = function() {
 	
 	this.dom = {};
-	this.dom.main = $('<div/>').addClass('jsc-layout clearfix');
-	this.dom.content = $('<div/>').addClass('jsc-layout-content clearfix').appendTo(this.dom.main);
+	this.dom.main = $('<div/>').addClass('jsc-layout');
+	this.dom.content = $('<div/>').addClass('jsc-layout-content').appendTo(this.dom.main);
 	
 };
 jsCow.res.view.layout.prototype = {
@@ -47,7 +51,9 @@ jsCow.res.view.layout.prototype = {
 		if (e.data.enabled) {
 			
 			this.dom.main.removeClass('jsc-layout-disabled').addClass('jsc-layout');
-			
+
+			// Set layout properties for flexbox
+			this.dom.content.attr('style', this.direction(e.data.flex.direction) );
 			
 
 			if (e.data.visible) {
@@ -61,8 +67,49 @@ jsCow.res.view.layout.prototype = {
 			this.dom.main.removeClass('jsc-layout').addClass('jsc-layout-disabled');
 			
 		}
+	},
+
+	//
+	// Misc functions - flexbox - display
+
+	display: function(display) {
+
+		var value;
+
+		if (typeof display === 'undefinex') {
+			value = '';
+		} else {
+			value = display;
+		}
+
+		return	"display: ~-webkit-"+value+"; " +
+				"display: ~-moz-"+value+"; " +
+				"display: ~-ms-"+value+"box; " +
+				"display: ~-ms-"+value+"; " +
+				"display: "+value+";";
+
+	},
+
+	//
+	// Misc functions - flexbox - direction
+
+	direction: function(direction) {
+
+		var value;
+
+		if (typeof direction === 'undefinex') {
+			value = '';
+		} else {
+			value = direction;
+		}
+
+		return	"-webkit-flex-direction: "+value+"; " + 
+				"-moz-flex-direction: "+value+"; " + 
+				"-ms-flex-direction: "+value+"; " + 
+				"flex-direction: "+value+";";
+
 	}
-	
+
 };
 
 jsCow.res.controller.layout = function() {};
