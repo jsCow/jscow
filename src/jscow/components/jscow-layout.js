@@ -77,6 +77,171 @@ jsCow.res.components.layout.prototype = {
 		});
 		
 		return this;
+	},
+
+	
+	// Justify Content
+
+	justifyContentStart: function() {
+
+		this.trigger('justifycontent', {
+			justifycontent: 'flex-start'
+		});
+		
+		return this;
+	},
+
+	justifyContentEnd: function() {
+
+		this.trigger('justifycontent', {
+			justifycontent: 'flex-end'
+		});
+		
+		return this;
+	},
+	justifyContentCenter: function() {
+
+		this.trigger('justifycontent', {
+			justifycontent: 'center'
+		});
+		
+		return this;
+	},
+	justifyContentSpaceBetween: function() {
+
+		this.trigger('justifycontent', {
+			justifycontent: 'space-between'
+		});
+		
+		return this;
+	},
+
+	justifyContentSpaceAround: function() {
+
+		this.trigger('justifycontent', {
+			justifycontent: 'space-around'
+		});
+		
+		return this;
+		
+	},
+
+
+	//
+	// Align Items
+
+	alignItemsStart: function() {
+
+		this.trigger('alignitems', {
+			alignitems: 'flex-start'
+		});
+		
+		return this;
+		
+	},
+
+	alignItemsEnd: function() {
+
+		this.trigger('alignitems', {
+			alignitems: 'flex-end'
+		});
+		
+		return this;
+		
+	},
+
+	alignItemsCenter: function() {
+
+		this.trigger('alignitems', {
+			alignitems: 'center'
+		});
+		
+		return this;
+		
+	},
+
+	alignItemsStretch: function() {
+
+		this.trigger('alignitems', {
+			alignitems: 'stretch'
+		});
+		
+		return this;
+		
+	},
+
+	alignItemsBaseline: function() {
+
+		this.trigger('alignitems', {
+			alignitems: 'baseline'
+		});
+		
+		return this;
+		
+	},
+
+
+	//
+	// Align Content
+
+	alignContentStart: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'flex-start'
+		});
+		
+		return this;
+		
+	},
+
+	alignContentEnd: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'flex-end'
+		});
+		
+		return this;
+		
+	},
+
+	alignContentCenter: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'center'
+		});
+		
+		return this;
+		
+	},
+
+	alignContentStretch: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'stretch'
+		});
+		
+		return this;
+		
+	},
+
+	alignContentSpaceBetween: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'space-between'
+		});
+		
+		return this;
+		
+	},
+
+	alignContentSpaceAround: function() {
+
+		this.trigger('aligncontent', {
+			alignitems: 'space-around'
+		});
+		
+		return this;
+		
 	}
 
 };
@@ -89,7 +254,10 @@ jsCow.res.model.layout = function() {
 		flex: {
 			display: 'flex',
 			direction: 'row',
-			wrap: 'nowrap'
+			wrap: 'nowrap',
+			justifycontent: 'flex-start',
+			alignitems: 'stretch',
+			aligncontent: 'stretch'
 		}
 	};
 	
@@ -106,7 +274,7 @@ jsCow.res.view.layout = function() {
 	
 	this.dom = {};
 	this.dom.main = $('<div/>').addClass('jsc-layout');
-	this.dom.content = $('<div/>').addClass('jsc-layout-content jsc-layout-direction-row').appendTo(this.dom.main);
+	this.dom.content = $('<div/>').addClass('jsc-layout-content jsc-layout-direction-row jsc-layout-wrap-nowrap jsc-layout-justify-content-flex-start jsc-layout-align-items-stretch jsc-layout-align-content-stretch').appendTo(this.dom.main);
 	
 };
 jsCow.res.view.layout.prototype = {
@@ -132,6 +300,21 @@ jsCow.res.view.layout.prototype = {
 			// Wrap
 			this.dom.content.removeClass('jsc-layout-wrap-wrap jsc-layout-wrap-nowrap jsc-layout-wrap-wrap-reverse');
 			this.dom.content.addClass('jsc-layout-wrap-' + e.data.flex.wrap);
+
+			//
+			// Justify Content
+			this.dom.content.removeClass('jsc-layout-justify-content-flex-start jsc-layout-justify-content-flex-end jsc-layout-justify-content-center jsc-layout-justify-content-space-between jsc-layout-justify-content-space-around');
+			this.dom.content.addClass('jsc-layout-justify-content-' + e.data.flex.justifycontent);
+			
+			//
+			// Align Items
+			this.dom.content.removeClass('jsc-layout-align-items-flex-start jsc-layout-align-items-flex-end jsc-layout-align-items-center jsc-layout-align-items-stretch jsc-layout-align-items-baseline');
+			this.dom.content.addClass('jsc-layout-align-items-' + e.data.flex.alignitems);
+
+			//
+			// Align Content
+			this.dom.content.removeClass('jsc-layout-align-content-flex-start jsc-layout-align-content-flex-end jsc-layout-align-content-center jsc-layout-align-content-stretch jsc-layout-align-content-baseline');
+			this.dom.content.addClass('jsc-layout-align-content-' + e.data.flex.aligncontent);
 
 
 			if (e.data.visible) {
@@ -200,6 +383,9 @@ jsCow.res.controller.layout.prototype = {
 		this.on("model.ready", this.isModelReady);
 		this.on("direction", this.direction);
 		this.on("wrap", this.wrap);
+		this.on('justifycontent', this.justifycontent);
+		this.on('alignitems', this.alignitems);
+		this.on('aligncontent', this.aligncontent);
 	},
 	
 	isModelReady: function() {
@@ -218,6 +404,30 @@ jsCow.res.controller.layout.prototype = {
 		this.cmp().config({
 			flex: {
 				wrap: e.data.wrap
+			}
+		});
+	},
+	
+	justifycontent: function(e) {
+		this.cmp().config({
+			flex: {
+				justifycontent: e.data.justifycontent
+			}
+		});
+	},
+	
+	alignitems: function(e) {
+		this.cmp().config({
+			flex: {
+				alignitems: e.data.alignitems
+			}
+		});
+	},
+	
+	aligncontent: function(e) {
+		this.cmp().config({
+			flex: {
+				aligncontent: e.data.aligncontent
 			}
 		});
 	}
