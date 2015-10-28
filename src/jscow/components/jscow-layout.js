@@ -242,6 +242,38 @@ jsCow.res.components.layout.prototype = {
 		
 		return this;
 		
+	},
+
+
+	//
+	// Order ( Item )
+
+	order: function(index) {
+		
+		if (typeof index === 'number') {
+			this.trigger('order', {
+				order: index
+			});
+		}
+		
+		return this;
+		
+	},
+
+
+	//
+	// Grow ( Item )
+
+	grow: function(value) {
+		
+		if (typeof value === 'number') {
+			this.trigger('grow', {
+				grow: value
+			});
+		}
+		
+		return this;
+		
 	}
 
 };
@@ -251,14 +283,14 @@ jsCow.res.model.layout = function() {
 	this.data = {
 		enabled: true,
 		visible: true,
-		flex: {
-			display: 'flex',
-			direction: 'row',
-			wrap: 'nowrap',
-			justifycontent: 'flex-start',
-			alignitems: 'stretch',
-			aligncontent: 'stretch'
-		}
+		display: 'flex',
+		direction: 'row',
+		wrap: 'nowrap',
+		justifycontent: 'flex-start',
+		alignitems: 'stretch',
+		aligncontent: 'stretch',
+		order: 0,
+		grow: 0
 	};
 	
 };
@@ -274,7 +306,7 @@ jsCow.res.view.layout = function() {
 	
 	this.dom = {};
 	this.dom.main = $('<div/>').addClass('jsc-layout');
-	this.dom.content = $('<div/>').addClass('jsc-layout-content jsc-layout-direction-row jsc-layout-wrap-nowrap jsc-layout-justify-content-flex-start jsc-layout-align-items-stretch jsc-layout-align-content-stretch').appendTo(this.dom.main);
+	this.dom.content = $('<div/>').addClass('jsc-layout-content jsc-layout-direction-row').appendTo(this.dom.main);
 	
 };
 jsCow.res.view.layout.prototype = {
@@ -294,28 +326,36 @@ jsCow.res.view.layout.prototype = {
 			
 			// Direction (row | row-reverse | column | column | column-reserve)
 			this.dom.content.removeClass('jsc-layout-direction-row jsc-layout-direction-row-reverse jsc-layout-direction-column jsc-layout-direction-column-reverse');
-			this.dom.content.addClass('jsc-layout-direction-' + e.data.flex.direction);
+			this.dom.content.addClass('jsc-layout-direction-' + e.data.direction);
 
 			//
 			// Wrap
 			this.dom.content.removeClass('jsc-layout-wrap-wrap jsc-layout-wrap-nowrap jsc-layout-wrap-wrap-reverse');
-			this.dom.content.addClass('jsc-layout-wrap-' + e.data.flex.wrap);
+			this.dom.content.addClass('jsc-layout-wrap-' + e.data.wrap);
 
 			//
 			// Justify Content
 			this.dom.content.removeClass('jsc-layout-justify-content-flex-start jsc-layout-justify-content-flex-end jsc-layout-justify-content-center jsc-layout-justify-content-space-between jsc-layout-justify-content-space-around');
-			this.dom.content.addClass('jsc-layout-justify-content-' + e.data.flex.justifycontent);
+			this.dom.content.addClass('jsc-layout-justify-content-' + e.data.justifycontent);
 			
 			//
 			// Align Items
 			this.dom.content.removeClass('jsc-layout-align-items-flex-start jsc-layout-align-items-flex-end jsc-layout-align-items-center jsc-layout-align-items-stretch jsc-layout-align-items-baseline');
-			this.dom.content.addClass('jsc-layout-align-items-' + e.data.flex.alignitems);
+			this.dom.content.addClass('jsc-layout-align-items-' + e.data.alignitems);
 
 			//
 			// Align Content
 			this.dom.content.removeClass('jsc-layout-align-content-flex-start jsc-layout-align-content-flex-end jsc-layout-align-content-center jsc-layout-align-content-stretch jsc-layout-align-content-baseline');
-			this.dom.content.addClass('jsc-layout-align-content-' + e.data.flex.aligncontent);
-
+			this.dom.content.addClass('jsc-layout-align-content-' + e.data.aligncontent);
+			
+			//
+			// Order
+			this.dom.main.attr('style', 'order: '+e.data.order+';');
+			
+			//
+			// Grow
+			this.dom.main.attr('style', this.flexGrowStyles(e.data.grow));
+			
 
 			if (e.data.visible) {
 				this.dom.main.show();
@@ -330,48 +370,20 @@ jsCow.res.view.layout.prototype = {
 		}
 	},
 
-	//
-	// Misc functions - flexbox - display
+	flexGrowStyles: function(value) {
 
-	display: function(display) {
+		var styles;
 
-		var value;
-
-		if (typeof display === 'undefinex') {
-			value = '';
+		if (typeof value === 'number') {
+			styles ="-webkit-flex-grow: "+value+"; " + 
+		     		"-moz-flex-grow: "+value+"; " + 
+		      		"-ms-flex-grow: "+value+"; " +
+					"flex-grow: "+value+";";
 		} else {
-			value = display;
+			styles = "";
 		}
 
-		return	"display: ~-webkit-"+value+"; " +
-				"display: ~-moz-"+value+"; " +
-				"display: ~-ms-"+value+"box; " +
-				"display: ~-ms-"+value+"; " +
-				"display: "+value+";";
-
-	},
-
-	//
-	// Misc functions - flexbox - direction
-
-	direction: function(direction) {
-
-		var value,
-			string;
-
-		if (typeof direction === 'undefined') {
-			value = '';
-		} else {
-			value = direction;
-		}
-		
-		string ="-webkit-flex-direction: "+value+"; " + 
-				"-moz-flex-direction: "+value+"; " + 
-				"-ms-flex-direction: "+value+"; " + 
-				"flex-direction: "+value+";";
-		
-		return string;
-
+		return styles;
 	}
 
 };
@@ -386,6 +398,8 @@ jsCow.res.controller.layout.prototype = {
 		this.on('justifycontent', this.justifycontent);
 		this.on('alignitems', this.alignitems);
 		this.on('aligncontent', this.aligncontent);
+		this.on('order', this.order);
+		this.on('grow', this.grow);
 	},
 	
 	isModelReady: function() {
@@ -394,41 +408,43 @@ jsCow.res.controller.layout.prototype = {
 	
 	direction: function(e) {
 		this.cmp().config({
-			flex: {
-				direction: e.data.direction
-			}
+			direction: e.data.direction
 		});
 	},
 	
 	wrap: function(e) {
 		this.cmp().config({
-			flex: {
-				wrap: e.data.wrap
-			}
+			wrap: e.data.wrap
 		});
 	},
 	
 	justifycontent: function(e) {
 		this.cmp().config({
-			flex: {
-				justifycontent: e.data.justifycontent
-			}
+			justifycontent: e.data.justifycontent
 		});
 	},
 	
 	alignitems: function(e) {
 		this.cmp().config({
-			flex: {
-				alignitems: e.data.alignitems
-			}
+			alignitems: e.data.alignitems
 		});
 	},
 	
 	aligncontent: function(e) {
 		this.cmp().config({
-			flex: {
-				aligncontent: e.data.aligncontent
-			}
+			aligncontent: e.data.aligncontent
+		});
+	},
+	
+	order: function(e) {
+		this.cmp().config({
+			order: e.data.order
+		});
+	},
+	
+	grow: function(e) {
+		this.cmp().config({
+			grow: e.data.grow
 		});
 	}
 
