@@ -274,6 +274,100 @@ jsCow.res.components.layout.prototype = {
 		
 		return this;
 		
+	},
+
+
+	//
+	// Shrink ( Item )
+
+	shrink: function(value) {
+		
+		if (typeof value === 'number') {
+			this.trigger('shrink', {
+				shrink: value
+			});
+		}
+		
+		return this;
+		
+	},
+
+
+	//
+	// Basis ( Item )
+
+	basis: function(value) {
+		
+		this.trigger('basis', {
+			basis: value
+		});
+		
+		return this;
+		
+	},
+
+
+	//
+	// Align Self ( Item )
+
+	alignSelfAuto: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'auto'
+		});
+		
+		return this;
+		
+	},
+
+	alignSelfStart: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'flex-start'
+		});
+		
+		return this;
+		
+	},
+
+	alignSelfEnd: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'flex-end'
+		});
+		
+		return this;
+		
+	},
+
+	alignSelfCenter: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'center'
+		});
+		
+		return this;
+		
+	},
+
+	alignSelfBaseline: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'baseline'
+		});
+		
+		return this;
+		
+	},
+
+	alignSelfStretch: function() {
+		
+		this.trigger('alignself', {
+			alignself: 'stretch'
+		});
+		
+		return this;
+		
 	}
 
 };
@@ -290,7 +384,10 @@ jsCow.res.model.layout = function() {
 		alignitems: 'stretch',
 		aligncontent: 'stretch',
 		order: 0,
-		grow: 0
+		grow: 0,
+		shrink: 0,
+		basis: 'auto',
+		alignself: 'auto'
 	};
 	
 };
@@ -306,7 +403,7 @@ jsCow.res.view.layout = function() {
 	
 	this.dom = {};
 	this.dom.main = $('<div/>').addClass('jsc-layout');
-	this.dom.content = $('<div/>').addClass('jsc-layout-content jsc-layout-direction-row').appendTo(this.dom.main);
+	this.dom.content = $('<div/>').addClass('jsc-layout-content').appendTo(this.dom.main);
 	
 };
 jsCow.res.view.layout.prototype = {
@@ -350,11 +447,22 @@ jsCow.res.view.layout.prototype = {
 			
 			//
 			// Order
-			this.dom.main.attr('style', 'order: '+e.data.order+';');
+			this.dom.main.css( {
+				order: e.data.order
+			});
 			
 			//
 			// Grow
-			this.dom.main.attr('style', this.flexGrowStyles(e.data.grow));
+			this.dom.main.css( this.flexGrowStyles(e.data.grow) );
+
+			//
+			// Shrink
+			this.dom.main.css( this.flexShrinkStyles(e.data.shrink) );
+			
+			//
+			// Align Self
+			this.dom.content.removeClass('jsc-layout-align-self-auto jsc-layout-align-self-flex-start jsc-layout-align-self-flex-end  jsc-layout-align-self-center  jsc-layout-align-self-baseline  jsc-layout-align-self-stretch');
+			this.dom.content.addClass('jsc-layout-align-self-' + e.data.alignself);
 			
 
 			if (e.data.visible) {
@@ -372,18 +480,40 @@ jsCow.res.view.layout.prototype = {
 
 	flexGrowStyles: function(value) {
 
-		var styles;
+		var css;
 
 		if (typeof value === 'number') {
-			styles ="-webkit-flex-grow: "+value+"; " + 
-		     		"-moz-flex-grow: "+value+"; " + 
-		      		"-ms-flex-grow: "+value+"; " +
-					"flex-grow: "+value+";";
+			css = {
+				"-webkit-flex-grow": value,
+		     	"-moz-flex-grow": value,
+		      	"-ms-flex-grow": value,
+				"flex-grow": value
+			};
 		} else {
-			styles = "";
+			css = {};
 		}
 
-		return styles;
+		return css;
+
+	},
+
+	flexShrinkStyles: function(value) {
+
+		var css;
+
+		if (typeof value === 'number') {
+			css = {
+				"-webkit-flex-shrink": value,
+		     	"-moz-flex-shrink": value,
+		      	"-ms-flex-shrink": value,
+				"flex-shrink": value
+			};
+		} else {
+			css = {};
+		}
+
+		return css;
+
 	}
 
 };
@@ -400,6 +530,9 @@ jsCow.res.controller.layout.prototype = {
 		this.on('aligncontent', this.aligncontent);
 		this.on('order', this.order);
 		this.on('grow', this.grow);
+		this.on('shrink', this.shrink);
+		this.on('basis', this.basis);
+		this.on('alignself', this.alignself);
 	},
 	
 	isModelReady: function() {
@@ -446,6 +579,24 @@ jsCow.res.controller.layout.prototype = {
 		this.cmp().config({
 			grow: e.data.grow
 		});
+	},
+	
+	shrink: function(e) {
+		this.cmp().config({
+			shrink: e.data.shrink
+		});
+	},
+	
+	basis: function(e) {
+		this.cmp().config({
+			basis: e.data.basis
+		});
+	},
+	
+	alignself: function(e) {
+		this.cmp().config({
+			alignself: e.data.alignself
+		});
 	}
-
+	
 };
