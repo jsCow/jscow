@@ -129,8 +129,36 @@ $(function(){
 					}, false),
 
 					jsCow.get(jsCow.res.components.layout, {
-						
-					}),
+						id: 'layout1'
+					}).add([
+						jsCow.get(jsCow.res.components.layout, {
+							id: 'layout2'
+						}).add(
+							jsCow.get(jsCow.res.components.fieldset, { title: 'Fieldset Title' }).add(
+								jsCow.get(jsCow.res.components.text, {
+									text: '111 111 111  eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 111 111 111 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+								})
+							)
+						),
+						jsCow.get(jsCow.res.components.layout, {
+							id: 'layout3'
+						}).add(
+							jsCow.get(jsCow.res.components.fieldset, { title: 'Fieldset Title' }).add(
+								jsCow.get(jsCow.res.components.text, {
+									text: '222 222 222 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 111 111 111 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+								})
+							)
+						),
+						jsCow.get(jsCow.res.components.layout, {
+							id: 'layout4'
+						}).add(
+							jsCow.get(jsCow.res.components.fieldset, { title: 'Fieldset Title' }).add(
+								jsCow.get(jsCow.res.components.text, {
+									text: '333 333 333  dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+								})
+							)
+						)
+					]),
 
 					jsCow.get(jsCow.res.components.group).add([
 						

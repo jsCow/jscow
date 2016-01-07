@@ -12,11 +12,7 @@ module.exports = function(grunt) {
 				],
                 tasks: [
 					'clean',
-					'less',
-					'concat',
-					'uglify'
-					/*,
-					'yuidoc'*/
+					'less'
 				]
             }
         },
@@ -162,7 +158,7 @@ module.exports = function(grunt) {
 
 	// Debug and Development task(s).
 	grunt.registerTask('dev', [
-		'jshint',
+		//'jshint',
 		'clean',
 		'less',
 		'concat',

@@ -40,3 +40,17 @@
 .jsc-fieldset-disabled { 
 	.disabled();
 }
+
+
+//
+// Fieldset in layout component
+
+.jsc-layout-content .jsc-fieldset, 
+.jsc-layout-content .jsc-fieldset-disabled {
+	
+	& ~ .jsc-fieldset, 
+	& ~ .jsc-fieldset-disabled { 
+		margin-top: 0;
+	}
+
+}
