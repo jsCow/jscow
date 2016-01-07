@@ -1,0 +1,42 @@
+
+//
+// Fieldset
+	
+.jsc-fieldset, 
+.jsc-fieldset-disabled { 
+	position: relative; 
+	.round-corner-all();
+	
+	& ~ .jsc-fieldset, 
+	& ~ .jsc-fieldset-disabled { 
+		margin-top: @space-default;
+	}
+	
+	.jsc-fieldset-legend { 
+		padding: (@space-default / 2) @space-default;
+		font-weight: 400;
+		font-size: 120%;
+		width: auto;
+		display: inline-block;
+		margin: 0 0 -1px @space-default;
+		.border-all(lighten(@border-color-default, (@color-offset-default / 2)) );
+		.layout-default( lighten(@color-default, (@color-offset-default * 3) ));
+		.round-corner-top();
+		.text();
+	}
+	
+	.jsc-fieldset-content { 
+		.round-corner-all();
+		.text();
+		.layout-default();
+		.border-left(lighten(@border-color-default, (@color-offset-default / 2)) );
+		.border-right(lighten(@border-color-default, (@color-offset-default / 2)) );
+		.border-bottom(lighten(@border-color-default, (@color-offset-default / 2)) );
+		padding: @space-default;
+	}
+	
+}
+
+.jsc-fieldset-disabled { 
+	.disabled();
+}

@@ -1,0 +1,36 @@
+
+// 
+// Panel
+
+.jsc-panel, 
+.jsc-panel-disabled {
+	
+	.jsc-panel-titlebar { 
+		.layout-default();
+		.border-bottom();
+		padding: @space-default / 2 @space-default;
+		text-overflow: ellipsis; 
+		overflow:hidden;
+		white-space:nowrap;
+		line-height: 160%;
+		
+		&:hover {
+			.layout-highlighted();
+			cursor: pointer;
+		}
+		
+		.fa {
+			margin-right: @space-default;
+		}
+		
+	}
+
+	.jsc-panel-content {
+		margin: @space-default;
+	}
+
+}
+
+.jsc-panel-disabled {
+	.disabled();
+}

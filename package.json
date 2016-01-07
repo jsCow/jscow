@@ -1,26 +1,24 @@
 {
-  "name": "jsCow",
+  "name": "jscow",
   "description": "jsCow - Javascript Component Framework",
   "version": "2.0.0",
   "license": "MIT",
   "readme": "README.md",
-  "author": "Mario Linz <gelight@gmx.de>",
+  "author": "Mario Linz <jscow@gmx.de>",
   "contributors": [
     {
       "name": "Mario Linz",
-      "email": "gelight@gmx.de"
+      "email": "jscow@gmx.de"
     }
   ],
   "devDependencies": {
-    "git": "latest",
-    "git-cli": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-less": "~0.11.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-uglify": "latest",
     "grunt-contrib-compress": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-yuidoc": "latest",
@@ -28,9 +26,6 @@
     "jquery": "latest",
     "bootstrap": "latest",
     "font-awesome": "latest"
-  },
-  "dependencies": {
-    
   },
   "repository": {
     "type": "git",
