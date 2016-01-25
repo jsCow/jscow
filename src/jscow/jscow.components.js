@@ -370,63 +370,50 @@ component.prototype = {
 				},
 				
 				/**
-				L&ouml;scht die aktuelle Komponente inklusive aller zugewiesenen Kind-Komponenten.
+				Delete a component and remove all related dom elements.
 				
 				@method del
-				@return {Object} Referenz auf die aktuelle Komponente.
+				@param {Object} [optional] cmp Instance of the component to be deleted
+				@return {Object} Reference to the current component instance object
 				@chainable
 				**/
-				del: function() {	
+				del: function(cmp) {	
 					
-					if (typeof this.parent() !== 'undefined' && this.parent()) {
-						this.parent().remove(this);
-					}
-					
-					var list = this.__children__;
-					
-					if (list.length > 0) {
-						$(list).each(function(i,c) {
-							c.del();
-						});
-					}
-					
-					return this;
-				},
-				
-				/**
-				L&ouml;scht eine spezifische Kind-Komponente inklusive aller zugewiesenen Kind-Komponenten.
-				
-				@method remove
-				@param {Object} cmp Referenz auf die Instanz der zu l&ouml;schenden Komponente.
-				@return {Object} Referenz auf die aktuelle Komponente.
-				@chainable
-				**/
-				remove: function(cmp) {
-					
-					var self = this;
-					var list = this.__children__;
-					
-					if (typeof cmp !== 'undefined') {
+					// Remove the component reference from parent children list
+					if (typeof cmp !== 'undefined' && typeof cmp === 'object') {
 						
-						// Delete a specific child component
-						if (list.length > 0) {
-							$(list).each(function(i,c) {
-								if (typeof c !== 'undefined' && typeof cmp === 'object' && typeof cmp !== 'undefined' && c.id() === cmp.id()) {
+						$(this.children()).each((function(self, cmp) {
+							return function(i,c) {
+
+								if (c.id() === cmp.id()) {
 									self.__children__.splice(i,1);
-									c.del();
 								}
-							});
+
+							};
+						})(this, cmp));
+
+					} else {
+
+						// Call to remove the component reference from parent children list
+						if (typeof this.parent() !== 'undefined' && this.parent()) {
+							this.parent().del(this);
 						}
 						
-					}else if (typeof cmp !== 'string' && cmp === '*') {
-						
-						// Delete all child components
+						// Remove the component domelemeents and delete the component instance from global jscow instance list
+						$(jsCow.componentsObjectList).each((function(self) {
+							return function(i, c) {
+								if (c !== 'undefined' && c.id() === self.id()) {
+									c.view().removeAll();
+									jsCow.componentsObjectList.splice(i,1);
+								}
+							};
+						})(this));
+
+						// Delete children components of the component to be delete
+						var list = this.__children__;
 						if (list.length > 0) {
 							$(list).each(function(i,c) {
-								if (typeof c !== 'undefined') {
-									self.__children__.splice(i,1);
-									c.del();
-								}
+								c.del();
 							});
 						}
 						

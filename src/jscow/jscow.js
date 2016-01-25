@@ -146,28 +146,6 @@ jsCow = (function() {
 		},
 		
 		/**
-		L&ouml;scht eine spezifische Komponente aus der globalen Komponenten-Liste von jsCow.
-		Hierbei wird automatisch die Methode .del() der jeweiligen Komponente aufgerufen.
-		
-		@method del
-		@param {Object} cmp Referenz auf die Instanz der zu l&ouml;schenden Komponente.
-		@return {Object} Referenz auf das das Framework-Object selbst.
-		@chainable
-		**/
-		del: function(cmp) {
-			
-			var list = this.componentsObjectList;
-			$.each(list, function(i,c) {
-				if (c !== 'undefined' && c.getID() === cmp.getID()) {
-					c.view().removeAll();
-					list.splice(i,1);
-				}
-			});
-			
-			return this;
-		},
-		
-		/**
 		...
 		
 		@method get
