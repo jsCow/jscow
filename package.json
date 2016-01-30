@@ -1,7 +1,7 @@
 {
   "name": "jscow",
   "description": "jsCow - Javascript Component Framework",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "GPL-3.0+",
   "readme": "README.md",
   "author": "Mario Linz <jscow@gmx.de>",

@@ -90,10 +90,15 @@ jsCow.res.core.events.eventsManager.prototype = {
 	
 	trigger: function (event, d, l) {
 		
+		var config = this.cmp().config();
 		var data = d;
 		var local = l;
 
-		if (typeof data === 'undefined' || !data) {
+		if (typeof d === 'undefined' || !d) {
+			data = config;
+		}else if (typeof d === 'object') {
+			data = d;
+		}else{
 			data = {};
 		}
 		
