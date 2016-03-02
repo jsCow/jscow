@@ -30,7 +30,7 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 		var self = this;
 		var viewList = this.list();
 		
-		$.each(viewList, function(i, view) {
+		$(viewList).each(function(i, view) {
 			
 			if (!view.isInit) {
 				
@@ -50,6 +50,8 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 				
 			}
 			
+		}).promise().done(function() {
+			self.cmp().trigger('view.ready');
 		});
 		
 	},
