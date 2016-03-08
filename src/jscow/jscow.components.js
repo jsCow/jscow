@@ -27,6 +27,44 @@ component.prototype = {
 	**/
 	get: function(cmpClassReference, preConfig) {
 		
+		// Get the reference by string		
+		if (typeof cmpClassReference === 'string') {
+
+			var search = function search(s, scope) {
+				
+				if (typeof s === "string") {
+					s = s.split('.');
+				}
+
+				if (!scope) {
+					scope = window;
+				}
+
+				if ( s.length < 2 ){
+
+					return scope[s[0]];
+
+				} else {
+
+					if ( scope[s[0]] ) {
+						
+						var newScope = s.shift();
+						return search( s, scope[newScope] );
+
+					} else {
+
+						return false;
+
+					}
+
+				}
+
+			};
+
+			cmpClassReference = search(cmpClassReference);
+
+		}
+
 		var c = new cmpClassReference();
 		
 		if (typeof c === 'object') {
