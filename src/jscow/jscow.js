@@ -174,3 +174,9 @@ jsCow = (function() {
 	return new jsCowBase();
 	
 })();
+
+if (typeof module !== 'undefined' && !!module.exports) {
+	var exports = module.exports = {
+		"jsCow": jsCow
+	};
+}

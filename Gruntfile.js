@@ -157,8 +157,7 @@ module.exports = function(grunt) {
 	]);
 
 	// Debug and Development task(s).
-	grunt.registerTask('dev', [
-		//'jshint',
+	grunt.registerTask('debug', [
 		'clean',
 		'less',
 		'concat',
@@ -172,6 +171,7 @@ module.exports = function(grunt) {
 		'less',
 		'concat',
 		'copy',
+		'uglify',
 		'yuidoc'
 	]);
 
