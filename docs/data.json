@@ -1,0 +1,1958 @@
+{
+    "project": {
+        "name": "jscow",
+        "description": "jsCow - Javascript Component Framework",
+        "version": "2.0.5",
+        "url": ""
+    },
+    "files": {
+        "src\\jscow\\jscow.components.controller.js": {
+            "name": "src\\jscow\\jscow.components.controller.js",
+            "modules": {},
+            "classes": {
+                "controllerHandler": 1,
+                "controller": 1
+            },
+            "fors": {
+                "controllerHandler": 1
+            },
+            "namespaces": {}
+        },
+        "src\\jscow\\jscow.components.js": {
+            "name": "src\\jscow\\jscow.components.js",
+            "modules": {},
+            "classes": {
+                "jsCow.components": 1,
+                "jsCow.res.core.mvc.component": 1
+            },
+            "fors": {
+                "cmp": 1
+            },
+            "namespaces": {}
+        },
+        "src\\jscow\\jscow.components.view.js": {
+            "name": "src\\jscow\\jscow.components.view.js",
+            "modules": {},
+            "classes": {
+                "jsCow.res.core.mvc.viewsManager": 1,
+                "jsCow.view": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\jscow\\jscow.events.js": {
+            "name": "src\\jscow\\jscow.events.js",
+            "modules": {},
+            "classes": {
+                "jsCow.res.core.events.eventsManager": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\jscow\\jscow.js": {
+            "name": "src\\jscow\\jscow.js",
+            "modules": {},
+            "classes": {
+                "jsCow": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "controllerHandler": {
+            "name": "controllerHandler",
+            "shortname": "controllerHandler",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 9,
+            "description": "Objektstuktur des Controller-Manager mit allen grundlegenden Methoden.",
+            "is_constructor": 1
+        },
+        "controller": {
+            "name": "controller",
+            "shortname": "controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 52,
+            "description": "Objektstuktur eines Controller mit allen grundlegenden Methoden.",
+            "is_constructor": 1
+        },
+        "jsCow.components": {
+            "name": "jsCow.components",
+            "shortname": "jsCow.components",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 9,
+            "description": "Components manager class for the jsCow framework.",
+            "is_constructor": 1
+        },
+        "jsCow.res.core.mvc.component": {
+            "name": "jsCow.res.core.mvc.component",
+            "shortname": "jsCow.res.core.mvc.component",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 89,
+            "description": "Defines the class with all default methods of each component instances",
+            "is_constructor": 1
+        },
+        "cmp": {
+            "name": "cmp",
+            "shortname": "cmp",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": []
+        },
+        "jsCow.res.core.mvc.viewsManager": {
+            "name": "jsCow.res.core.mvc.viewsManager",
+            "shortname": "jsCow.res.core.mvc.viewsManager",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 304,
+            "description": "Add a view to the current component.",
+            "is_constructor": 1,
+            "itemtype": "method",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Reference of the registered view resources.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the view manager of the current component.",
+                "type": "Object"
+            },
+            "chainable": 1
+        },
+        "jsCow.view": {
+            "name": "jsCow.view",
+            "shortname": "jsCow.view",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 97,
+            "description": "View class with all default methods.",
+            "is_constructor": 1
+        },
+        "jsCow.res.core.events.eventsManager": {
+            "name": "jsCow.res.core.events.eventsManager",
+            "shortname": "jsCow.res.core.events.eventsManager",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 9,
+            "description": "Events manager class for the jsCow framework.",
+            "is_constructor": 1
+        },
+        "jsCow": {
+            "name": "jsCow",
+            "shortname": "jsCow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\jscow\\jscow.js",
+            "line": 9,
+            "description": "Core class for the jsCow framework.",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 17,
+            "description": "Liste aller vorhandenen Controller einer Komponente.",
+            "itemtype": "property",
+            "name": "controllerList",
+            "type": "Array",
+            "default": "\"[]\"",
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 32,
+            "description": "Gibt eine liste aller vorhandenen Controller einer Komponente zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "controllers",
+            "return": {
+                "description": "Liste aller registrierten Controller.",
+                "type": "Object"
+            },
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 42,
+            "description": "Setzt den Default-Controller einer Komponente.",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "Referenz auf die im Framework registrierte Controller-Klasse.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Gibt den registrierten Controller zur&uuml;ck.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 60,
+            "description": "Gibt eine Referenz auf das Model zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "model",
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 69,
+            "description": "Gibt eine Referenz auf den View-Manager der Komponente zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "view",
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 78,
+            "description": "...",
+            "itemtype": "method",
+            "name": "cmp",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 88,
+            "description": "...",
+            "itemtype": "method",
+            "name": "cmp",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 107,
+            "description": "...",
+            "itemtype": "method",
+            "name": "id",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 129,
+            "description": "...",
+            "itemtype": "method",
+            "name": "enabled",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 168,
+            "description": "...",
+            "itemtype": "method",
+            "name": "disabled",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 202,
+            "description": "...",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 221,
+            "description": "...",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controller"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 304,
+            "description": "Gibt die Anzahl der angelegten Controller einer Komponente zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "length",
+            "return": {
+                "description": "Anzahl der registrierten Controller zur&uuml;ck.",
+                "type": "Object"
+            },
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 315,
+            "description": "...",
+            "itemtype": "method",
+            "name": "cmp",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.controller.js",
+            "line": 325,
+            "description": "Entfernt einen spezifischen Controller einer Komponente.",
+            "itemtype": "method",
+            "name": "del",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "Referenz auf die Instanz des Controller.",
+                    "type": "Object"
+                }
+            ],
+            "class": "controllerHandler"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 17,
+            "description": "Find an registered component instance within the jsCow framework instance",
+            "itemtype": "method",
+            "name": "find",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "Id of the component instance or instance object.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Return the found component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow.components"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 42,
+            "description": "Get a new component instance from the jsCow framework instance",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "cmpClassReference",
+                    "description": "Reference to the component resource.",
+                    "type": "String"
+                },
+                {
+                    "name": "preConfig",
+                    "description": "Default configuration for the new component instance.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Return the new created component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow.components"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 98,
+            "description": "Defines the object for all default configuration properties",
+            "itemtype": "property",
+            "name": "preConfig",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 110,
+            "description": "Defines the registered model of a component instance",
+            "itemtype": "property",
+            "name": "__model__",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 118,
+            "description": "Defines the view manager instance for all registered views of the component instance",
+            "itemtype": "property",
+            "name": "__view__",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 126,
+            "description": "Defines the registered controller of the component instance",
+            "itemtype": "property",
+            "name": "__controller__",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 134,
+            "description": "Defines the configuration of the component instance",
+            "itemtype": "property",
+            "name": "config.",
+            "type": "Object",
+            "default": "\"{}\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 142,
+            "description": "Defines a reference to the parent component instance",
+            "itemtype": "property",
+            "name": "__cgf__.parent",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 150,
+            "description": "Propertie for all needed HTML DOM elements of the component instance",
+            "itemtype": "property",
+            "name": "__cgf__.dom",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 165,
+            "description": "Defines the DOM target element of the component instance",
+            "itemtype": "property",
+            "name": "config.target",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 173,
+            "description": "Defines a list of all child components of the component instance",
+            "itemtype": "property",
+            "name": "children",
+            "type": "Array",
+            "default": "\"[]\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 181,
+            "description": "Defines an object for methods to extend the component instance",
+            "itemtype": "property",
+            "name": "extension",
+            "type": "Object",
+            "default": "\"false\"",
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 192,
+            "description": "Add a new component as a children into the current component. \nThis method should be used before the application will be run.",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "Defines the reference to the insert component",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "child Defines the reference to the component itself",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 259,
+            "description": "Setzt das DOM-Target (jQuery) der Komponente.",
+            "itemtype": "method",
+            "name": "target",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "DOM-Target der Komponente.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 330,
+            "description": "F&uuml;gt eine neue Kind-Komponente der aktuellen Komponente hinzu.\nDie hinzuzuf&uuml;gende Komponente muss bereits als Instanz vorliegen.",
+            "itemtype": "method",
+            "name": "append",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "Referenz auf die Instanz der hinzuzuf&uuml;genden Komponente.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "child Referenz auf die aktuelle Komponente selbst.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 352,
+            "description": "F&uuml;gt der aktuellen Komponente eine neue Kind-Komponente zur Laufzeit hinzu.\nAnwendungsgebiet hier kann beispielsweise die Verwendung von ben&ouml;tigten Komponenten innerhalb eines Viewss sein, \nwelche wiederum von der Komponente selbst gesteuert werden soll.",
+            "itemtype": "method",
+            "name": "appendInner",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "Referenz auf die im Framework registrierte Komponenten-Klasse.",
+                    "type": "Object"
+                },
+                {
+                    "name": "target",
+                    "description": "DOM-Target Element (jQuery), in welchem zu erstellende Komponente gerendert werden soll.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "child Referenz auf neu erzeugte Komponente.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 389,
+            "description": "F&uuml;gt der aktuellen Komponente eine neue Kind-Komponente zur Laufzeit hinzu und positioniert die neue Komponente nach einer existierenden Kind-Komponente.",
+            "itemtype": "method",
+            "name": "appendAfterInner",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "Referenz auf die Komponente, die eingef&uuml;gt werden soll.",
+                    "type": "Object"
+                },
+                {
+                    "name": "target",
+                    "description": "Referenz auf die Komponente, hinter der die neue Komponente eingef&uuml;gt werden soll.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "child Referenz auf eingef&uuml;gte Komponente.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 418,
+            "description": "Delete a component and remove all related dom elements.",
+            "itemtype": "method",
+            "name": "del",
+            "params": [
+                {
+                    "name": "optional",
+                    "description": "cmp Instance of the component to be deleted",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Reference to the current component instance object",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 523,
+            "description": "Erweitert die aktuelle Komponente und reichert sie mit den definierten neuen Methoden an.",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "method",
+                    "description": "Objekt mit allen hinzuzuf&uuml;genden Methoden.",
+                    "type": "Object"
+                },
+                {
+                    "name": "root",
+                    "description": "Wird root als \"true\" definiert, werden alle Methoden als Extension angelegt, ohne bestehende Standard-Methoden zu &uuml;berschreiben. \nMuss eine neue Methode den gleichen Namen einer Standard-Methode haben, kann Dies &uuml;ber eine solche Extension genutzt werden. \nInnerhalb einer solchen Extension-Methode steht \"this\" im Scope der Haupt-Klasse der aktuellen Komponente.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 588,
+            "description": "Verschiebt die aktuelle Komponente in ein neues DOM-Target.",
+            "itemtype": "method",
+            "name": "move",
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 615,
+            "description": "...",
+            "itemtype": "method",
+            "name": "id",
+            "params": [
+                {
+                    "name": "",
+                    "description": "",
+                    "type": "String",
+                    "multiple": true
+                }
+            ],
+            "return": {
+                "description": "ID der Komponente.",
+                "type": "String"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 636,
+            "description": "Gibt eine Liste der Kind-Komponenten der Komponente zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "children",
+            "return": {
+                "description": "Liste aller Kind-Komponenten.",
+                "type": "Array"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 646,
+            "description": "Gibt das aktuelle Model der Komponente zur&uuml;ck.",
+            "itemtype": "method",
+            "name": "model",
+            "return": {
+                "description": "Referenz auf das Model der Komponente.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 662,
+            "description": "Gibt eine Referenz auf den View-Manager der Komponente zur&uuml;ck.\n(Das Nutzen von mehr als einem View ist noch in einer fr&uuml;hen Entwicklungsphase und sollte bei Bedarf getestet werden)",
+            "itemtype": "method",
+            "name": "view",
+            "return": {
+                "description": "Referenz auf den View der Komponente.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 677,
+            "description": "Gibt eine Referenz auf den Controller-Manager der aktuellen Komponente zur&uuml;ck.\nDamit auch Event-Handler Methoden eines Controllers wiederverwendet werden k&ouml;nnen, ist es m&ouml;glich mehr als einen Controller in einer Komponente zu gegistrieren.",
+            "itemtype": "method",
+            "name": "controller",
+            "return": {
+                "description": "Referenz auf den Controller-Manager der Komponente.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 692,
+            "description": "Setzt eine beliebige Konfiguration im Model der der Komponente.",
+            "itemtype": "method",
+            "name": "config",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "Objekt mit Konfigurations-Parametern.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 725,
+            "description": "Setzt die Referenz auf die &uuml;bergeordnete Komponente.",
+            "itemtype": "method",
+            "name": "parent",
+            "params": [
+                {
+                    "name": "parent",
+                    "description": "Referenz auf die &uuml;bergeordnete Komponente.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 771,
+            "description": "...",
+            "itemtype": "method",
+            "name": "addModel",
+            "params": [
+                {
+                    "name": "m",
+                    "description": "...",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 839,
+            "description": "...",
+            "itemtype": "method",
+            "name": "id",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.component"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 899,
+            "description": "Registriert den Default-View f&uuml;r die aktuelle Komponente.",
+            "itemtype": "method",
+            "name": "addView",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Referenz auf den im Framework registrierte View-Klasse.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 914,
+            "description": "L&ouml;scht einen spezifischen View einer Komponente.",
+            "itemtype": "method",
+            "name": "deleteView",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Referenz auf den registrierten View der Komponente.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 928,
+            "description": "F&uuml;gt einen weiteren View der Komponente hinzu.",
+            "itemtype": "method",
+            "name": "deleteController",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "Referenz die zu l&ouml;schende Controller-Instanz.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 942,
+            "description": "Tauscht einen bestehenden Controller mit einem Anderen.",
+            "itemtype": "method",
+            "name": "replaceController",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "Referenz den zu ersetzenden Controller.",
+                    "type": "Object"
+                },
+                {
+                    "name": "n",
+                    "description": "Referenz auf eine im Framework registrierte Controller-Klasse.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 957,
+            "description": "Setzt den Default-Controller f&uuml;r die Komponente.",
+            "itemtype": "method",
+            "name": "addController",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "Referenz auf die im Framework registrierte Controller-Klasse.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 971,
+            "description": "Ersetzt einen bestehenden View mit einem Anderen.",
+            "itemtype": "method",
+            "name": "replaceView",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "Referenz den zu ersetzenden View.",
+                    "type": "Object"
+                },
+                {
+                    "name": "n",
+                    "description": "Referenz auf eine im Framework registrierte View-Klasse.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Referenz der aktuellen Komponente.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1061,
+            "description": "...",
+            "itemtype": "method",
+            "name": "isEnabled",
+            "return": {
+                "description": "...",
+                "type": "Boolean"
+            },
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1079,
+            "description": "...",
+            "itemtype": "method",
+            "name": "disable",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1101,
+            "description": "...",
+            "itemtype": "method",
+            "name": "enable",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1123,
+            "description": "...",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1139,
+            "description": "...",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1155,
+            "description": "...",
+            "itemtype": "method",
+            "name": "update",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.js",
+            "line": 1169,
+            "description": "...",
+            "itemtype": "method",
+            "name": "focus",
+            "return": {
+                "description": "...",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "cmp"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 17,
+            "description": "List of all registered views of a component instance.",
+            "itemtype": "property",
+            "name": "viewList",
+            "type": "Array",
+            "default": "[]",
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 28,
+            "description": "Init method of all views of the current component instance",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "Object with all default view configurations.",
+                    "type": "Object"
+                }
+            ],
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 65,
+            "description": "Get a list of all registered views of the current component.",
+            "itemtype": "method",
+            "name": "list",
+            "return": {
+                "description": "Liste aller registrierten Views.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 74,
+            "description": "Creates a new view instance for the current component.",
+            "itemtype": "method",
+            "name": "addView",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Reference of the registered view resources.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the view instance of the current component.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 104,
+            "description": "Get the reference to the current component instance.",
+            "itemtype": "method",
+            "name": "cmp",
+            "return": {
+                "description": "Returns the reference to the current component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 113,
+            "description": "Get the main DOM element (jQuery) of a specific component view.",
+            "itemtype": "method",
+            "name": "main",
+            "return": {
+                "description": "Returns the main DOM element (jQuery) of the current component view.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 122,
+            "description": "Get the inner DOM element (jQuery) of a specific component view.",
+            "itemtype": "method",
+            "name": "content",
+            "return": {
+                "description": "Returns the inner DOM element (jQuery) of the current component view.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 135,
+            "description": "Append the main DOM element (jQuery) of a specific component view into the target DOM element from the component instance.",
+            "itemtype": "method",
+            "name": "appendToTarget",
+            "return": {
+                "description": "Returns the current component view.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 147,
+            "description": "Append any main DOM element (jQuery) of a specific component view after the main DOM element from the current component view.",
+            "itemtype": "method",
+            "name": "appendAfter",
+            "return": {
+                "description": "Returns the current component view.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 159,
+            "description": "Get the configuration of the current component view.",
+            "itemtype": "method",
+            "name": "cfg",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "optional Defines the index of the component view.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns the current component view.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 181,
+            "description": "Get the id of the current component view.",
+            "itemtype": "method",
+            "name": "id",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns the current component view.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 197,
+            "description": "Set the CSS class .jsc-focus on the main DOM element of the current component view.",
+            "itemtype": "method",
+            "name": "focus",
+            "return": {
+                "description": "Returns the current component view.",
+                "type": "Object"
+            },
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 207,
+            "description": "Attach an event handler function for an event.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "handler",
+                    "description": "Defines the handler function for the attached event.",
+                    "type": "Function"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current view instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 222,
+            "description": "Triggers an attached event.",
+            "itemtype": "method",
+            "name": "trigger",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current view instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 237,
+            "description": "Triggers an event bubbling down into the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubbleIn",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current view instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 252,
+            "description": "Triggers an event bubbling upward in the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubbleOut",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current view instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 267,
+            "description": "Triggers an event bubbling upwards and also down into the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubble",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "jsCow.view"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 318,
+            "description": "Add a view to the current component.",
+            "itemtype": "method",
+            "name": "del",
+            "params": [
+                {
+                    "name": "view",
+                    "description": "Reference of the view instance of the current component.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the view manager of the current component.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 342,
+            "description": "Add a view to the current component.",
+            "itemtype": "method",
+            "name": "update",
+            "return": {
+                "description": "Returns the view manager of the current component.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 362,
+            "description": "Get the length of all registered component views.",
+            "itemtype": "method",
+            "name": "length",
+            "return": {
+                "description": "Returns the length of all registered component views.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 372,
+            "description": "Get the inner DOM element (jQuery) of a specific component view. \nWithout parameter the method will get the content element of the first component view.",
+            "itemtype": "method",
+            "name": "content",
+            "params": [
+                {
+                    "name": "idx",
+                    "description": "Defines the index of the registered component view.",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "Returns the inner DOM element (jQuery) of the current component view. Are there more then one views registered the method will get a list. Is there no content element available the main element of the view will be returned.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 408,
+            "description": "Get the main DOM element (jQuery) of a specific component view. \nWithout parameter the method will get the main elementn from the first component view.",
+            "itemtype": "method",
+            "name": "main",
+            "params": [
+                {
+                    "name": "idx",
+                    "description": "Defines the index of the registered component view.",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "Returns the main DOM element (jQuery) of the current component view. Are there more then one views registered the method will get a list. Is there no main element available the method will be return false.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 444,
+            "description": "Get the reference to the current component instance.",
+            "itemtype": "method",
+            "name": "cmp",
+            "return": {
+                "description": "Returns the reference to the current component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 453,
+            "description": "Move the current main DOM element into a other element.",
+            "itemtype": "method",
+            "name": "appendTo",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "jQuery DOM element.",
+                    "type": "DOM Element"
+                }
+            ],
+            "return": {
+                "description": "Returns the view manager.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 473,
+            "description": "Remove all component views.",
+            "itemtype": "method",
+            "name": "removeAll",
+            "return": {
+                "description": "Returns the reference to the current component instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 490,
+            "description": "Replace a component view with another one.",
+            "itemtype": "method",
+            "name": "replace",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "Defines a reference to an existing component view.",
+                    "type": "Object"
+                },
+                {
+                    "name": "n",
+                    "description": "Defines a reference to the new component view resource.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current component instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.components.view.js",
+            "line": 514,
+            "description": "Set a CSS class or an inline CSS style on the main DOM element in all views.",
+            "itemtype": "method",
+            "name": "style",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "Defines a reference to an existing component view.",
+                    "type": "Object"
+                },
+                {
+                    "name": "n",
+                    "description": "Defines a reference to the new component view resource.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.mvc.viewsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 20,
+            "description": "Reference to a registered component instance",
+            "itemtype": "property",
+            "name": "__cmp__",
+            "type": "Object",
+            "default": "false",
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 28,
+            "description": "Reference to the current component instance",
+            "itemtype": "property",
+            "name": "parentClass",
+            "type": "Object",
+            "default": "false",
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 39,
+            "description": "Get the current component instance",
+            "itemtype": "method",
+            "name": "cmp",
+            "params": [
+                {
+                    "name": "cmp",
+                    "description": "Reference to the component instance.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the component instance.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 55,
+            "description": "Returns true|false whether the current event is s local event or not.",
+            "itemtype": "method",
+            "name": "isNot",
+            "params": [
+                {
+                    "name": "local",
+                    "description": "true|false",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns true|false whether the current event is s local event or not.",
+                "type": "Object"
+            },
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 69,
+            "description": "Get the reference to the current component instance.",
+            "itemtype": "method",
+            "name": "parent",
+            "params": [
+                {
+                    "name": "parentClass",
+                    "description": "Reference to the current component instance to set the parent.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current event handler.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 85,
+            "description": "Attach an event handler function for an event.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "h",
+                    "description": "Defines the handler function for the attached event.",
+                    "type": "Function"
+                },
+                {
+                    "name": "l",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current event handler.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 139,
+            "description": "Detach an event of a component.",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "cmp",
+                    "description": "Reference to the component instance.",
+                    "type": "Object"
+                }
+            ],
+            "chainable": 1,
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 158,
+            "description": "Trigger an attached event.",
+            "itemtype": "method",
+            "name": "trigger",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "d",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "l",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the reference to the current event handler.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 241,
+            "description": "Triggers an event bubbling upward in the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubbleOut",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 262,
+            "description": "Triggers an event bubbling down into the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubbleIn",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 290,
+            "description": "Triggers an event bubbling upwards and also down into the component hirarchy.",
+            "itemtype": "method",
+            "name": "bubble",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.events.js",
+            "line": 314,
+            "description": "Triggers all event bubblings in the event handler.",
+            "itemtype": "method",
+            "name": "bubbleTrigger",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Defines the name of the attached event",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Defines the event data by trigger the attached event.",
+                    "type": "Object"
+                },
+                {
+                    "name": "local",
+                    "description": "Defines the type (local or global) of the event.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "jsCow.res.core.events.eventsManager"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 21,
+            "description": "Default core setup variables",
+            "itemtype": "property",
+            "name": "config",
+            "type": "Object",
+            "default": "\"{\n\t\t\t\tversion: '2.0.5',\n\t\t\t\turl: {\n\t\t\t\t\tbase: ''\n\t\t\t\t},\n\t\t\t\tzIndex: 1\n\t\t\t}\"",
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 41,
+            "description": "List of all registered component instances",
+            "itemtype": "property",
+            "name": "componentsObjectList",
+            "type": "Object",
+            "default": "\"[]\"",
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 49,
+            "description": "Object for all references to component resources",
+            "itemtype": "property",
+            "name": "res",
+            "type": "Object",
+            "default": "\"{\n\t\t\t\tcomponents: {},\n\t\t\t\tmodel: {},\n\t\t\t\tview: {},\n\t\t\t\tcontroller: {}\n\t\t\t}\"",
+            "example": [
+                "\n\t\t\tjsCow.res.components.button = function() { ... }\n\t\t\tjsCow.res.components.button.prototype = { \n\t\t\t\t... \n\t\t\t}\n\t\t\t\n\t\t\tjsCow.res.model.button = function() { ... }\n\t\t\tjsCow.res.model.button.prototype = { \n\t\t\t\t... \n\t\t\t}\n\t\t\t\n\t\t\tjsCow.res.view.button = function() { ... }\n\t\t\tjsCow.res.view.button.prototype = { \n\t\t\t\t... \n\t\t\t}\n\t\t\t\n\t\t\tjsCow.res.controller.button = function() { ... }\n\t\t\tjsCow.res.controller.button.prototype = { \n\t\t\t\t... \n\t\t\t}"
+            ],
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 91,
+            "description": "Object for all registered events",
+            "itemtype": "property",
+            "name": "events",
+            "type": "Object",
+            "default": "\"{}\"",
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 99,
+            "description": "Object for all registered cached objects or variables",
+            "itemtype": "property",
+            "name": "cache",
+            "type": "Object",
+            "default": "\"{}\"",
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 107,
+            "description": "Object with global debug settings",
+            "itemtype": "property",
+            "name": "debug",
+            "type": "Object",
+            "default": "\"{\n\t\t\t\tevents: false,\n\t\t\t\tcontroller: false,\n\t\t\t\tmodel: false,\n\t\t\t\tview: false\n\t\t\t}\"",
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 129,
+            "description": "Get the next higher z-index",
+            "itemtype": "method",
+            "name": "getNextZIndex",
+            "return": {
+                "description": "next higher z-index as an integer.",
+                "type": "Int"
+            },
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 139,
+            "description": "Get an cached object from the cache property or set a value to the cache property",
+            "itemtype": "method",
+            "name": "cache",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "Index or name of the set value.",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "Value, which is to be stored.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns the value for the defined index.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 168,
+            "description": "Remove a specific value within the cache property",
+            "itemtype": "method",
+            "name": "removeCache",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "Defines the index of the cached value.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Reference to the core instance of jsCow.",
+                "type": "Object"
+            },
+            "chainable": 1,
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 181,
+            "description": "Get a new component instance",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "cmp",
+                    "description": "Reference to the component resource.",
+                    "type": "String"
+                },
+                {
+                    "name": "preConfig",
+                    "description": "Default configuration for the new component instance.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Return the new component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow"
+        },
+        {
+            "file": "src\\jscow\\jscow.js",
+            "line": 192,
+            "description": "Find an registered component instance",
+            "itemtype": "method",
+            "name": "find",
+            "params": [
+                {
+                    "name": "cmp",
+                    "description": "Id of the component instance or instance object.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Return the found component instance.",
+                "type": "Object"
+            },
+            "class": "jsCow"
+        }
+    ],
+    "warnings": []
+}

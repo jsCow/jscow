@@ -1,5 +1,5 @@
 /*
- * jsCow - JavaScript Component Framework v3.1.0
+ * jsCow - JavaScript Component Framework v2.0.5
  * https://github.com/jsCow/jscow
  * 
  * Released under the GNU GENERAL PUBLIC LICENSE
@@ -7,20 +7,31 @@
  */
 
 /**
-Core class of the jsCow framework.
+  * Core class for the jsCow framework.
+  * @class jsCow
+  * @constructor 
+  */
 
-@class jsCow
-@constructor 
-*/
+$ = require('jquery');
 
 jsCow = (function() {
 	
 	var jsCowBase = function() {
-		/*
-		 @description default core setup variables
-		 */
+		
+		/**
+		  * Default core setup variables
+		  * @property config
+		  * @type Object
+		  * @default "{
+				version: '2.0.5',
+				url: {
+					base: ''
+				},
+				zIndex: 1
+			}"
+		  */
 		this.config = {
-			version: '2.0.0',
+			version: '2.0.5',
 			url: {
 				base: ''
 			},
@@ -28,26 +39,24 @@ jsCow = (function() {
 		};
 		
 		/**
-		Liste aller im Framework registrierten Komponenten.
-		
-		@property componentsObjectList
-		@type Object
-		@default "[]"
-		**/
+		  * List of all registered component instances
+		  * @property componentsObjectList
+		  * @type Object
+		  * @default "[]"
+		  */
 		this.componentsObjectList = [];
 		
 		/**
-		Objekt in dem die einzelnen Komponenten-Klassen registriert und abgelegt werden k&ouml;nnen.
-		
-		@property res
-		@type Object
-		@default "{
-			components: {},
-			model: {},
-			view: {},
-			controller: {}
-		}"
-		@example
+		  * Object for all references to component resources
+		  * @property res
+		  * @type Object
+		  * @default "{
+				components: {},
+				model: {},
+				view: {},
+				controller: {}
+			}"
+		  * @example
 			jsCow.res.components.button = function() { ... }
 			jsCow.res.components.button.prototype = { 
 				... 
@@ -67,7 +76,7 @@ jsCow = (function() {
 			jsCow.res.controller.button.prototype = { 
 				... 
 			}
-		**/
+		 */
 		this.res = {
 			core: {
 				mvc: {},
@@ -79,9 +88,33 @@ jsCow = (function() {
 			controller : {}
 		};
 		
+		/**
+		  * Object for all registered events
+		  * @property events
+		  * @type Object
+		  * @default "{}"
+		  */
 		this.events = {};
+		
+		/**
+		  * Object for all registered cached objects or variables
+		  * @property cache
+		  * @type Object
+		  * @default "{}"
+		  */
 		this.cache = {};
 		
+		/**
+		  * Object with global debug settings
+		  * @property debug
+		  * @type Object
+		  * @default "{
+				events: false,
+				controller: false,
+				model: false,
+				view: false
+			}"
+		  */
 		this.debug = {
 			events: false,
 			controller: false,
@@ -94,25 +127,23 @@ jsCow = (function() {
 	jsCowBase.prototype = {
 		
 		/**
-		Gibt den n&auml;chst h&ouml;heren z-Index als Zahl zur&uuml;ck.
-		
-		@method getNextZIndex
-		@return {Int} H&ouml;chsten z-Index als Zahl.
-		**/
+		  * Get the next higher z-index
+		  * @method getNextZIndex
+		  * @return {int} next higher z-index as an integer.
+		  */
 		nextZIndex: function() {
 			this.config.zIndex++;
 			return this.config.zIndex;
 		},
 		
 		/**
-		Speichert einen beliebigen Wert in einer Cache-Liste.
-		
-		@method setCache
-		@param {String} index Index, unter welchem der Wert gespeichert werden soll.
-		@param {Object} cache Wert, welcher gespeichert werden soll.
-		@return {Object} Referenz auf das das Framework-Object selbst.
-		@chainable
-		**/
+		  * Get an cached object from the cache property or set a value to the cache property
+		  * @method cache
+		  * @param {String} index Index or name of the set value.
+		  * @param {Object} value Value, which is to be stored.
+		  * @return {Object} Returns the value for the defined index.  
+		  * @chainable
+		  */
 		cache: function(index, value) {
 			
 			if (index && value) {
@@ -135,13 +166,12 @@ jsCow = (function() {
 		},
 		
 		/**
-		L&ouml;scht einen existierenden Wert aus der Cache-Liste.
-		
-		@method removeCache
-		@param {String} index Index, unter welchem der Wert gespeichert wurde.
-		@return {Object} Referenz auf das das Framework-Object selbst.
-		@chainable
-		**/
+		  * Remove a specific value within the cache property
+		  * @method removeCache
+		  * @param {String} index Defines the index of the cached value.
+		  * @return {Object} Reference to the core instance of jsCow.
+		  * @chainable
+		  */
 		removeCache: function(index) {
 			delete this.cache[index];
 			
@@ -149,25 +179,22 @@ jsCow = (function() {
 		},
 		
 		/**
-		...
-		
-		@method get
-		@param {Object} ...
-		@return {Object} ...
-		@chainable
-		**/
+		  * Get a new component instance
+		  * @method get
+		  * @param {String} cmp Reference to the component resource.
+		  * @param {Object} preConfig Default configuration for the new component instance.
+		  * @return {Object} Return the new component instance.
+		  */
 		get: function(cmp, preConfig) {
 			return this.components.get(cmp, preConfig);
 		},
 		
 		/**
-		...
-		
-		@method find
-		@param {Object} ...
-		@return {Object} ...
-		@chainable
-		**/
+		  * Find an registered component instance
+		  * @method find
+		  * @param {String} cmp Id of the component instance or instance object.
+		  * @return {Object} Return the found component instance.
+		  */
 		find: function(cmp) {
 			return this.components.find(cmp);
 		}
@@ -178,59 +205,9 @@ jsCow = (function() {
 	
 })();
 
+/* Module Export of the global jsCow object */
 if (typeof module !== 'undefined' && !!module.exports) {
 	var exports = module.exports = {
 		"jsCow": jsCow
 	};
 }
-
-( function( global, factory ) {
-
-	"use strict";
-
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "jsCow requires a window with a document" );
-				}
-				return factory( w );
-			};
-	} else {
-		factory( global );
-	}
-
-// Pass this if window is not defined yet
-} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-
-
-
-});
-
-(function (root, factory) {
-
-	"use strict";
-	
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['b'], function (b) {
-            return (root.returnExportsGlobal = factory(b));
-        });
-    } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory(require('b'));
-    } else {
-        // Browser globals
-        root.returnExportsGlobal = factory(root.b);
-    }
-}(this, function (b) {
-    //use b in some fashion.
-
-    // Just return a value to define the module export.
-    // This example returns an object, but the module
-    // can return a function as the exported value.
-    return {};
-}));

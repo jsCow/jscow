@@ -1,5 +1,5 @@
 /*
- * jsCow - JavaScript Component Framework v3.1.0
+ * jsCow - JavaScript Component Framework v2.0.5
  * https://github.com/jsCow/jscow
  * 
  * Released under the GNU GENERAL PUBLIC LICENSE
@@ -7,20 +7,31 @@
  */
 
 /**
-Core class of the jsCow framework.
+  * Core class for the jsCow framework.
+  * @class jsCow
+  * @constructor 
+  */
 
-@class jsCow
-@constructor 
-*/
+$ = require('jquery');
 
 jsCow = (function() {
 	
 	var jsCowBase = function() {
-		/*
-		 @description default core setup variables
-		 */
+		
+		/**
+		  * Default core setup variables
+		  * @property config
+		  * @type Object
+		  * @default "{
+				version: '2.0.5',
+				url: {
+					base: ''
+				},
+				zIndex: 1
+			}"
+		  */
 		this.config = {
-			version: '2.0.0',
+			version: '2.0.5',
 			url: {
 				base: ''
 			},
@@ -28,26 +39,24 @@ jsCow = (function() {
 		};
 		
 		/**
-		Liste aller im Framework registrierten Komponenten.
-		
-		@property componentsObjectList
-		@type Object
-		@default "[]"
-		**/
+		  * List of all registered component instances
+		  * @property componentsObjectList
+		  * @type Object
+		  * @default "[]"
+		  */
 		this.componentsObjectList = [];
 		
 		/**
-		Objekt in dem die einzelnen Komponenten-Klassen registriert und abgelegt werden k&ouml;nnen.
-		
-		@property res
-		@type Object
-		@default "{
-			components: {},
-			model: {},
-			view: {},
-			controller: {}
-		}"
-		@example
+		  * Object for all references to component resources
+		  * @property res
+		  * @type Object
+		  * @default "{
+				components: {},
+				model: {},
+				view: {},
+				controller: {}
+			}"
+		  * @example
 			jsCow.res.components.button = function() { ... }
 			jsCow.res.components.button.prototype = { 
 				... 
@@ -67,7 +76,7 @@ jsCow = (function() {
 			jsCow.res.controller.button.prototype = { 
 				... 
 			}
-		**/
+		 */
 		this.res = {
 			core: {
 				mvc: {},
@@ -79,9 +88,33 @@ jsCow = (function() {
 			controller : {}
 		};
 		
+		/**
+		  * Object for all registered events
+		  * @property events
+		  * @type Object
+		  * @default "{}"
+		  */
 		this.events = {};
+		
+		/**
+		  * Object for all registered cached objects or variables
+		  * @property cache
+		  * @type Object
+		  * @default "{}"
+		  */
 		this.cache = {};
 		
+		/**
+		  * Object with global debug settings
+		  * @property debug
+		  * @type Object
+		  * @default "{
+				events: false,
+				controller: false,
+				model: false,
+				view: false
+			}"
+		  */
 		this.debug = {
 			events: false,
 			controller: false,
@@ -94,25 +127,23 @@ jsCow = (function() {
 	jsCowBase.prototype = {
 		
 		/**
-		Gibt den n&auml;chst h&ouml;heren z-Index als Zahl zur&uuml;ck.
-		
-		@method getNextZIndex
-		@return {Int} H&ouml;chsten z-Index als Zahl.
-		**/
+		  * Get the next higher z-index
+		  * @method getNextZIndex
+		  * @return {int} next higher z-index as an integer.
+		  */
 		nextZIndex: function() {
 			this.config.zIndex++;
 			return this.config.zIndex;
 		},
 		
 		/**
-		Speichert einen beliebigen Wert in einer Cache-Liste.
-		
-		@method setCache
-		@param {String} index Index, unter welchem der Wert gespeichert werden soll.
-		@param {Object} cache Wert, welcher gespeichert werden soll.
-		@return {Object} Referenz auf das das Framework-Object selbst.
-		@chainable
-		**/
+		  * Get an cached object from the cache property or set a value to the cache property
+		  * @method cache
+		  * @param {String} index Index or name of the set value.
+		  * @param {Object} value Value, which is to be stored.
+		  * @return {Object} Returns the value for the defined index.  
+		  * @chainable
+		  */
 		cache: function(index, value) {
 			
 			if (index && value) {
@@ -135,13 +166,12 @@ jsCow = (function() {
 		},
 		
 		/**
-		L&ouml;scht einen existierenden Wert aus der Cache-Liste.
-		
-		@method removeCache
-		@param {String} index Index, unter welchem der Wert gespeichert wurde.
-		@return {Object} Referenz auf das das Framework-Object selbst.
-		@chainable
-		**/
+		  * Remove a specific value within the cache property
+		  * @method removeCache
+		  * @param {String} index Defines the index of the cached value.
+		  * @return {Object} Reference to the core instance of jsCow.
+		  * @chainable
+		  */
 		removeCache: function(index) {
 			delete this.cache[index];
 			
@@ -149,25 +179,22 @@ jsCow = (function() {
 		},
 		
 		/**
-		...
-		
-		@method get
-		@param {Object} ...
-		@return {Object} ...
-		@chainable
-		**/
+		  * Get a new component instance
+		  * @method get
+		  * @param {String} cmp Reference to the component resource.
+		  * @param {Object} preConfig Default configuration for the new component instance.
+		  * @return {Object} Return the new component instance.
+		  */
 		get: function(cmp, preConfig) {
 			return this.components.get(cmp, preConfig);
 		},
 		
 		/**
-		...
-		
-		@method find
-		@param {Object} ...
-		@return {Object} ...
-		@chainable
-		**/
+		  * Find an registered component instance
+		  * @method find
+		  * @param {String} cmp Id of the component instance or instance object.
+		  * @return {Object} Return the found component instance.
+		  */
 		find: function(cmp) {
 			return this.components.find(cmp);
 		}
@@ -178,88 +205,60 @@ jsCow = (function() {
 	
 })();
 
+/* Module Export of the global jsCow object */
 if (typeof module !== 'undefined' && !!module.exports) {
 	var exports = module.exports = {
 		"jsCow": jsCow
 	};
 }
-
-( function( global, factory ) {
-
-	"use strict";
-
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "jsCow requires a window with a document" );
-				}
-				return factory( w );
-			};
-	} else {
-		factory( global );
-	}
-
-// Pass this if window is not defined yet
-} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-
-
-
-});
-
-(function (root, factory) {
-
-	"use strict";
-	
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['b'], function (b) {
-            return (root.returnExportsGlobal = factory(b));
-        });
-    } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory(require('b'));
-    } else {
-        // Browser globals
-        root.returnExportsGlobal = factory(root.b);
-    }
-}(this, function (b) {
-    //use b in some fashion.
-
-    // Just return a value to define the module export.
-    // This example returns an object, but the module
-    // can return a function as the exported value.
-    return {};
-}));;/*
- * jsCow.components - jsCow extention - JavaScript Library
- * http://www.gelight-tec.de/
- *
- * Copyright 2011, Mario Linz
- * http://www.gelight-tec.de/gui/license
- *
- * Date: April 04 22:00:00 2011
+;/*
+ * jsCow - Components Manager Extension - JavaScript Component Framework
+ * https://github.com/jsCow/jscow
+ * 
+ * Released under the GNU GENERAL PUBLIC LICENSE
+ * https://github.com/jsCow/jscow/blob/master/LICENSE
  */
 
 /**
-&Uuml;ber das Object "component" kann eine neue Instanz einer registrierten Komponente geholt bzw. erzeugt werden.
-
-@class component
-@constructor 
-*/
+  * Components manager class for the jsCow framework.
+  * @class jsCow.components
+  * @constructor 
+  */
 var component = function() {};
 component.prototype = {
 	
 	/**
-	Gibt eine neue Instanz einer im Framework registrierten Komponente zur&uuml;ck.
-	Das Model, der View, sowie der Controller der entsprechenden Komponente werden mit Standard-Methoden angereichert.
+	  * Find an registered component instance within the jsCow framework instance
+	  * @method find
+	  * @param {String} component Id of the component instance or instance object.
+	  * @return {Object} Return the found component instance.
+	  */
+	find: function(component) {
+		
+		var cid,
+			foundCmp;
+
+		if (typeof component === 'object') {
+			cid = component.id();
+		}
+		
+		foundCmp = false;
+		$.each(jsCow.componentsObjectList, function(i, c) {
+			if (c.id() === component) {
+				foundCmp = c;
+			}
+		});
+		
+		return foundCmp;
+	},
 	
-	@method get
-	@param {Object} c Referenz auf die im Framework registrierte Komponenten-Klasse.
-	@return {Object} Referenz auf die Instanz der neuen Komponente
-	**/
+	/**
+	  * Get a new component instance from the jsCow framework instance
+	  * @method get
+	  * @param {String} cmpClassReference Reference to the component resource.
+	  * @param {Object} preConfig Default configuration for the new component instance.
+	  * @return {Object} Return the new created component instance.
+	  */
 	get: function(cmpClassReference, preConfig) {
 		
 		// Get the reference by string		
@@ -300,82 +299,73 @@ component.prototype = {
 
 		}
 
+		/**
+		  * Defines the class with all default methods of each component instances
+		  * @class jsCow.res.core.mvc.component
+		  * @constructor
+		  */
 		var c = new cmpClassReference();
 		
 		if (typeof c === 'object') {
 			
 			/**
-			...
-			
-			@property preConfig
-			*/
+			  * Defines the object for all default configuration properties
+			  * @property preConfig
+			  */
 			if (typeof preConfig !== 'undefined') {
 				c.__preConfig__ = preConfig;
 			} else {
 				c.__preConfig__ = {};
 			}
-
-			/**
-			Objektstuktur einer Komponente mit allen grundlegenden Methoden.
-			
-			@class cmp
-			@constructor 
-			*/
 			
 			c.events = false;
 			
 			/**
-			Registriertes Model der Komponente
-
-			@property __model__
-			@type Object
-			@default "false"
-			**/
+			  * Defines the registered model of a component instance
+			  * @property __model__
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__model__ = false;
 			
 			/**
-			Registrierte Views der Komponente
-
-			@property __view__
-			@type Object
-			@default "false"
-			**/
+			  * Defines the view manager instance for all registered views of the component instance
+			  * @property __view__
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__view__ = false;
 			
 			/**
-			Registrierte Controller der Komponente
-
-			@property __controller__
-			@type Object
-			@default "false"
-			**/
+			  * Defines the registered controller of the component instance
+			  * @property __controller__
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__controller__ = false;
 			
 			/**
-			Konfiguration der Komponente.
-
-			@property config.
-			@type Object
-			@default "{}"
-			**/
+			  * Defines the configuration of the component instance
+			  * @property config.
+			  * @type Object
+			  * @default "{}"
+			  */
 			c.__cfg__ = {};
 			
 			/**
-			Referenz auf die &uuml;bergeordnete Komponente.
-
-			@property config.parent
-			@type Object
-			@default "false"
-			**/
+			  * Defines a reference to the parent component instance
+			  * @property __cgf__.parent
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__cfg__.parent = false;
 			
 			/**
-			Objekt f&uuml;r alle ben&ouml;tigten HTML-DOM Elemente der Komponente.
-			
-			@property config.dom
-			@type Object
-			@default "false"
-			**/
+			  * Propertie for all needed HTML DOM elements of the component instance
+			  * @property __cgf__.dom
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__cfg__.dom = false;
 			
 			c.__cfg__.layerindex = 0;
@@ -386,44 +376,40 @@ component.prototype = {
 			c.__cfg__.id = false;
 			
 			/**
-			DOM-Target der Komponente.
-
-			@property config.target
-			@type Object
-			@default "false"
-			**/
+			  * Defines the DOM target element of the component instance
+			  * @property config.target
+			  * @type Object
+			  * @default "false"
+			  */
 			c.__cfg__.target = false;
 			
 			/**
-			Liste aller Kind-Komponenten der aktuellen Komponente.
-
-			@property children
-			@type Array
-			@default "[]"
-			**/
+			  * Defines a list of all child components of the component instance
+			  * @property children
+			  * @type Array
+			  * @default "[]"
+			  */
 			c.__children__ = [];
 			
 			/**
-			Objekt aller Methoden, die die Komponente erweitert.
-			
-			@property extension
-			@type Object
-			@default "false"
-			**/
+			  * Defines an object for methods to extend the component instance
+			  * @property extension
+			  * @type Object
+			  * @default "false"
+			  */
 			c.extension = false;
 			
-			// Extend component with all standard methods
+			// Extend the current component with all default methods
 			c = $.extend(true, c,  {
 				
 				/**
-				F&uuml;gt eine neue Kind-Komponente der aktuellen Komponente hinzu.
-				Die hinzuzuf&uuml;gende Komponente existiert in diesem Fall noch nicht als Instanz.
-				
-				@method add
-				@param {Object} child Referenz auf die im Framework registrierte Komponenten-Klasse.
-				@return {Object} child Referenz auf die aktuelle Komponente selbst.
-				@chainable
-				**/
+				  * Add a new component as a children into the current component. 
+				  * This method should be used before the application will be run. 
+				  * @method add
+				  * @param {Object} child Defines the reference to the insert component
+				  * @return {Object} child Defines the reference to the component itself
+				  * @chainable
+				  */
 				add: function(childs) {
 					
 					var list = [];
@@ -1512,64 +1498,43 @@ component.prototype = {
 			return {};
 		}
 		
-	},
-	
-	/**
-	Sucht eine Komponente anhand der angegebenen Komponenten-ID und gibt bei Erfolg die Instanz der gesuchten Komponente zur&uuml;ck.
-	
-	@method find
-	@for component
-	@param {String} cid ID der gesuchten Komponente.
-	@return {Object} Referenz auf die gesuchte Instanz der Komponente. Wird keine Komponente gefunden, wird false zur&uuml;ckgegeben.
-	**/
-	find: function(component) {
-		
-		var cid,
-			foundCmp;
-
-		if (typeof component === 'object') {
-			cid = component.id();
-		}
-		
-		foundCmp = false;
-		$.each(jsCow.componentsObjectList, function(i, c) {
-			if (c.id() === component) {
-				foundCmp = c;
-			}
-		});
-		
-		return foundCmp;
 	}
 	
 };
 
 jsCow.components = new component();
 ;/*
- jsCow.res.view - jsCow extention - JavaScript Library
- http://www.jscow.de/
- Author: Mario Linz
+ * jsCow - Views Manager Extension - JavaScript Component Framework
+ * https://github.com/jsCow/jscow
+ * 
+ * Released under the GNU GENERAL PUBLIC LICENSE
+ * https://github.com/jsCow/jscow/blob/master/LICENSE
  */
 
 /**
-Objektstuktur des View-Manager mit allen grundlegenden Methoden.
+  * Views manager class for the jsCow framework.
+  * @class jsCow.res.core.mvc.viewsManager
+  * @constructor 
+  */
 
-@class viewsManager
-@constructor 
-*/
 jsCow.res.core.mvc.viewsManager = function() {
 	
 	/**
-	Liste aller vorhandenen Views einer Komponente.
-
-	@property viewList
-	@type Array
-	@default "[]"
-	**/
+	  * List of all registered views of a component instance.
+	  * @property viewList
+	  * @type Array
+	  * @default []
+	  */
 	this.viewList = [];
 	
 };
 jsCow.res.core.mvc.viewsManager.prototype = {
 	
+	/**
+	  * Init method of all views of the current component instance
+	  * @method init
+	  * @param {Object} config Object with all default view configurations.
+	  */
 	init: function(config) {
 		
 		var cfg = config;
@@ -1603,22 +1568,20 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	Gibt eine Liste aller vorhandenen Views einer Komponente zur&uuml;ck.
-	
-	@method list
-	@return {Object} Liste aller registrierten Views.
-	**/
+	  * Get a list of all registered views of the current component. 
+	  * @method list
+	  * @return {Object} Liste aller registrierten Views.
+	  */
 	list: function() {
 		return this.viewList;
 	},
 	
 	/**
-	Setzt den Default-View einer Komponente.
-	
-	@method addView
-	@param {Object} v Referenz auf die im Framework registrierte View-Klasse.
-	@return {Object} Gibt den registrierten View zur&uuml;ck.
-	**/
+	  * Creates a new view instance for the current component.
+	  * @method addView
+	  * @param {Object} v Reference of the registered view resources.
+	  * @return {Object} Returns the view instance of the current component.
+	  */
 	addView: function(v) {
 		
 		var self = this;
@@ -1636,16 +1599,36 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 		eventsManager.parent(this.viewList[length]);
 		this.viewList[length].events = eventsManager;
 		
+		/**
+		  * View class with all default methods.
+		  * @class jsCow.view
+		  * @constructor
+		  */
 		$.extend(true, this.viewList[length],  {
 			
+			/**
+			  * Get the reference to the current component instance.
+			  * @method cmp
+			  * @return {Object} Returns the reference to the current component instance.
+			  */
 			cmp: function() {
 				return this.__cmp__;
 			},
 			
+			/**
+			  * Get the main DOM element (jQuery) of a specific component view. 
+			  * @method main
+			  * @return {Object} Returns the main DOM element (jQuery) of the current component view.
+			  */
 			main: function() {
 				return this.dom.main;
 			},
 			
+			/**
+			  * Get the inner DOM element (jQuery) of a specific component view. 
+			  * @method content
+			  * @return {Object} Returns the inner DOM element (jQuery) of the current component view.
+			  */
 			content: function() {
 				if (this.dom.content) {
 					return this.dom.content;
@@ -1654,27 +1637,45 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 				}
 			},
 			
+			/**
+			  * Append the main DOM element (jQuery) of a specific component view into the target DOM element from the component instance.  
+			  * @method appendToTarget
+			  * @return {Object} Returns the current component view.
+			  * @chainable
+			  */
 			appendToTarget: function() {
 				$(this.dom.main).appendTo(this.cmp().target());
 				
 				return this;
 			},
 			
+			/**
+			  * Append any main DOM element (jQuery) of a specific component view after the main DOM element from the current component view.  
+			  * @method appendAfter
+			  * @return {Object} Returns the current component view.
+			  * @chainable
+			  */
 			appendAfter: function(target) {
 				target.after(this.dom.main);
 				
 				return this;
 			},
 			
-			cfg: function(param) {
-				if (param === undefined) {
+			/**
+			  * Get the configuration of the current component view.
+			  * @method cfg
+			  * @param {String} index optional Defines the index of the component view.  
+			  * @return {Object} Returns the current component view.
+			  */
+			cfg: function(index) {
+				if (index === undefined) {
 					
 					return this.__cfg__;
 
 				} else {
 
-					if(this.__cfg__[param]) {
-						return this.__cfg__[param];
+					if(this.__cfg__[index]) {
+						return this.__cfg__[index];
 					} else {
 						return false;
 					}
@@ -1682,6 +1683,12 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 				}
 			},
 			
+			/**
+			  * Get the id of the current component view.   
+			  * @method id
+			  * @param {String} id 
+			  * @return {Object} Returns the current component view.
+			  */
 			id: function(id) {
 				if (id) {
 					this.__id__ = id;
@@ -1692,35 +1699,83 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 				}
 			},
 			
+			/**
+			  * Set the CSS class .jsc-focus on the main DOM element of the current component view.   
+			  * @method focus
+			  * @return {Object} Returns the current component view.
+			  */
 			focus: function(e) {	
 				$(".jsc-focus").removeClass("jsc-focus");
 				this.dom.main.addClass('jsc-focus');
 			},
 			
+			/**
+			  * Attach an event handler function for an event.
+			  * @method on
+			  * @param {String} event Defines the name of the attached event 
+			  * @param {Function} handler Defines the handler function for the attached event.
+			  * @param {Boolean} local Defines the type (local or global) of the event.
+			  * @return {Object} Returns the reference to the current view instance.
+			  * @chainable
+			  */
 			on: function(event, handler, local) {
 				this.events.on(event, handler, local);
 				
 				return this;
 			},
 			
+			/**
+			  * Triggers an attached event.
+			  * @method trigger
+			  * @param {String} event Defines the name of the attached event 
+			  * @param {Object} data Defines the event data by trigger the attached event.
+			  * @param {Boolean} local Defines the type (local or global) of the event.
+			  * @return {Object} Returns the reference to the current view instance.  
+			  * @chainable
+			  */
 			trigger: function(event, data, local) {
 				this.events.trigger(event, data, local);
 				
 				return this;
 			},
 			
+			/**
+			  * Triggers an event bubbling down into the component hirarchy. 
+			  * @method bubbleIn
+			  * @param {String} event Defines the name of the attached event 
+			  * @param {Object} data Defines the event data by trigger the attached event.
+			  * @param {Boolean} local Defines the type (local or global) of the event.
+			  * @return {Object} Returns the reference to the current view instance.  
+			  * @chainable
+			  */
 			bubbleIn: function(event, data, local) {
 				this.events.bubbleIn(event, data, local);
 				
 				return this;
 			},
 			
+			/**
+			  * Triggers an event bubbling upward in the component hirarchy. 
+			  * @method bubbleOut
+			  * @param {String} event Defines the name of the attached event 
+			  * @param {Object} data Defines the event data by trigger the attached event.
+			  * @param {Boolean} local Defines the type (local or global) of the event.
+			  * @return {Object} Returns the reference to the current view instance.  
+			  * @chainable
+			  */
 			bubbleOut: function(event, data, local) {
 				this.events.bubbleOut(event, data, local);
 				
 				return this;
 			},
 			
+			/**
+			  * Triggers an event bubbling upwards and also down into the component hirarchy. 
+			  * @method bubble
+			  * @param {String} event Defines the name of the attached event 
+			  * @param {Object} data Defines the event data by trigger the attached event.
+			  * @param {Boolean} local Defines the type (local or global) of the event.
+			  */
 			bubble: function(event, data, local) {
 				this.events.bubble(event, data, local);
 				
@@ -1752,12 +1807,13 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	F&uuml;gt einen weiteren View einer Komponente hinzu.
-	
-	@method add
-	@param {Object} v Referenz auf die im Framework registrierte View-Klasse.
-	@return {Object} Gibt den registrierten View zur&uuml;ck.
-	**/
+	  * Add a view to the current component.
+	  * @class jsCow.res.core.mvc.viewsManager
+	  * @method add
+	  * @param {Object} v Reference of the registered view resources.
+	  * @return {Object} Returns the view manager of the current component.
+	  * @chainable
+	  */
 	add: function(v) {
 		this.addView(v);
 		
@@ -1765,11 +1821,12 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	L&ouml;scht einen spezifischen View aus einer Komponente.
-	
-	@method del
-	@param {Object} v Referenz auf die Instanz des zu l&ouml;schenden View.
-	**/
+	  * Add a view to the current component.
+	  * @method del
+	  * @param {Object} view Reference of the view instance of the current component.
+	  * @return {Object} Returns the view manager of the current component.
+	  * @chainable
+	  */
 	del: function(view) {
 		
 		var v = new view();
@@ -1784,15 +1841,16 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			}
 		});
 		
+		return this;
 	},
 	
 	/**
-	Ruft die Methode .update() f&uuml;r alle vorhandenen Views auf.
-	
-	@method update
-	@param {Object} e Event-Parameter der Handler-Methode.
-	**/
-	update: function(e) {
+	  * Add a view to the current component.
+	  * @method update
+	  * @return {Object} Returns the view manager of the current component.
+	  * @chainable
+	  */
+	update: function() {
 		
 		var self = this;
 		var viewList = this.list();
@@ -1803,25 +1861,26 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 			
 		});
 		
+		return this;
 	},
 	
 	/**
-	Gibt die Anzahl der vorhandenen Views einer Komponente zur&uuml;ck.
-	
-	@method length
-	@return {Int} Anzahl der registrierten Views.
-	**/
+	  * Get the length of all registered component views.
+	  * @method length
+	  * @return {Object} Returns the length of all registered component views.
+	  * @chainable
+	  */
 	length: function() {
 		return this.viewList.length;
 	},
 	
 	/**
-	Gibt den inneren Container (jQuery) der aktuellen Komponente zur&uuml;ck.
-	
-	@method content
-	@param {Object} index Index eines spezifischen DOM-Elements.
-	@return {Int} Inneren Container (jQuery) der aktuellen Komponente
-	**/
+	  * Get the inner DOM element (jQuery) of a specific component view. 
+	  * Without parameter the method will get the content element of the first component view.
+	  * @method content
+	  * @param {int} idx Defines the index of the registered component view.
+	  * @return {Object} Returns the inner DOM element (jQuery) of the current component view. Are there more then one views registered the method will get a list. Is there no content element available the main element of the view will be returned.
+	  */
 	content: function(idx) {
 		
 		var index;
@@ -1852,12 +1911,12 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	Gibt den &auml;u&szlig;eren Container (jQuery) der aktuellen Komponente zur&uuml;ck.
-	
-	@method main
-	@param {Object} index Index eines spezifischen DOM-Elements.
-	@return {Int} &Auml;u&szlig;eren Container (jQuery) der aktuellen Komponente
-	**/
+	  * Get the main DOM element (jQuery) of a specific component view. 
+	  * Without parameter the method will get the main elementn from the first component view.
+	  * @method main
+	  * @param {int} idx Defines the index of the registered component view.
+	  * @return {Object} Returns the main DOM element (jQuery) of the current component view. Are there more then one views registered the method will get a list. Is there no main element available the method will be return false.
+	  */
 	main: function(idx) {
 		
 		var index;
@@ -1888,22 +1947,21 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	Gibt eine Referenz auf die Instanz der aktuellen Komponente zur&uuml;ck.
-	
-	@method cmp
-	@return {Object} Referenz auf die Instanz der aktuellen Komponente.
-	**/
+	  * Get the reference to the current component instance.
+	  * @method cmp
+	  * @return {Object} Returns the reference to the current component instance.
+	  */
 	cmp: function() {
 		return this.__cmp__;
 	},
 	
 	/**
-	F&uuml;gt den &auml;u&szlig;eren Container der Komponente in ein neues DOM-Target Element ein.
-	
-	@method appendTo
-	@param {Object} target jQuery DOM-Element.
-	@return {Object} Referenz auf die Instanz der aktuellen Komponente.
-	**/
+	  * Move the current main DOM element into a other element.
+	  * @method appendTo
+	  * @param {DOM Element} target jQuery DOM element.
+	  * @return {Object} Returns the view manager.
+	  * @chainable
+	  */
 	appendTo: function(target) {
 		
 		var self = this;
@@ -1918,11 +1976,11 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	Entfernt alle Views einer Komponente.
-	
-	@method removeAll
-	@return {Object} Referenz auf die Instanz der aktuellen Komponente.
-	**/
+	  * Remove all component views.
+	  * @method removeAll
+	  * @return {Object} Returns the reference to the current component instance.
+	  * @chainable
+	  */
 	removeAll: function() {
 		var viewList = this.list();
 		$.each(viewList, function(i, view) {
@@ -1935,12 +1993,13 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 	},
 	
 	/**
-	Tauscht einen existierenden View mit einem Anderen.
-	
-	@method replace
-	@param {Object} o Instanz des View, welcher ersetzt werden soll.
-	@param {Object} n Referenz auf die im Framework registrierte View-Klasse.
-	**/
+	  * Replace a component view with another one.
+	  * @method replace
+	  * @param {Object} o Defines a reference to an existing component view.
+	  * @param {Object} n Defines a reference to the new component view resource.
+	  * @return {Object} Returns the reference to the current component instance.
+	  * @chainable
+	  */
 	replace: function(o, n) {
 		
 		var oV = new o();
@@ -1953,15 +2012,17 @@ jsCow.res.core.mvc.viewsManager.prototype = {
 				_this.del(o);
 			}
 		});
-		
+
+		return this;
 	},
 	
 	/**
-	Setzt einen CSS-Style f&uuml;r den &auml;u&szlig;eren Container der Komponente.
-	
-	@method style
-	@param {String} style CSS Styles
-	**/
+	  * Set a CSS class or an inline CSS style on the main DOM element in all views.
+	  * @method style
+	  * @param {Object} o Defines a reference to an existing component view.
+	  * @param {Object} n Defines a reference to the new component view resource.
+	  * @return {Object} Returns the reference to the current component instance.
+	  */
 	style: function(css) {
 		var style = css;
 		var _this = this;
@@ -2328,15 +2389,51 @@ jsCow.res.core.mvc.controllerHandler.prototype = {
 	}
 	
 };
-;jsCow.res.core.events.eventsManager = function() {
+;/*
+ * jsCow - Events Manager Extension - JavaScript Component Framework
+ * https://github.com/jsCow/jscow
+ * 
+ * Released under the GNU GENERAL PUBLIC LICENSE
+ * https://github.com/jsCow/jscow/blob/master/LICENSE
+ */
+
+/**
+  * Events manager class for the jsCow framework.
+  * @class jsCow.res.core.events.eventsManager
+  * @constructor 
+  */
+
+jsCow.res.core.events.eventsManager = function() {
 	
+
 	this.__cfg__ = false;
+	
+	/**
+	  * Reference to a registered component instance
+	  * @property __cmp__
+	  * @type Object
+	  * @default false
+	  */
 	this.__cmp__ = false;
+	
+	/**
+	  * Reference to the current component instance
+	  * @property parentClass
+	  * @type Object
+	  * @default false
+	  */
 	this.parentClass = false;
 	
 };
 jsCow.res.core.events.eventsManager.prototype = {
 	
+	/**
+	  * Get the current component instance
+	  * @method cmp
+	  * @param {Object} cmp Reference to the component instance.
+	  * @return {Object} Returns the component instance.  
+	  * @chainable
+	  */
 	cmp: function(cmp) {
 		if (cmp !== undefined) {
 			this.__cmp__ = cmp;
@@ -2346,6 +2443,12 @@ jsCow.res.core.events.eventsManager.prototype = {
 		}
 	},
 
+	/**
+	  * Returns true|false whether the current event is s local event or not.
+	  * @method isNot
+	  * @param {Boolean} local true|false 
+	  * @return {Object} Returns true|false whether the current event is s local event or not.  
+	  */
 	isNot: function(local) {
 		if (local) {
 			return false;
@@ -2354,6 +2457,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		}
 	},
 	
+	/**
+	  * Get the reference to the current component instance.
+	  * @method parent
+	  * @param {Boolean} parentClass Reference to the current component instance to set the parent.
+	  * @return {Object} Returns the reference to the current event handler.  
+	  * @chainable
+	  */
 	parent: function(parentClass) {
 		if (parentClass !== undefined) {
 			this.parentClass = parentClass;
@@ -2363,6 +2473,15 @@ jsCow.res.core.events.eventsManager.prototype = {
 		}
 	},
 	
+	/**
+	  * Attach an event handler function for an event.
+	  * @method on
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Function} h Defines the handler function for the attached event.
+	  * @param {Boolean} l Defines the type (local or global) of the event.
+	  * @return {Object} Returns the reference to the current event handler.  
+	  * @chainable
+	  */
 	on: function(event, h, l) {
 		
 		var handler = h;
@@ -2408,6 +2527,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		return this;
 	},
 	
+	/**
+	  * Detach an event of a component.
+	  * @method off
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} cmp Reference to the component instance.  
+	  * @chainable
+	  */
 	off: function(event, cmp) {
 		if (jsCow.events[event]) {
 			$.each(jsCow.events[event], function(i,evt) {
@@ -2416,8 +2542,19 @@ jsCow.res.core.events.eventsManager.prototype = {
 				}
 			});
 		}
+
+		return this;
 	},
 	
+	/**
+	  * Trigger an attached event.
+	  * @method trigger
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} d Defines the event data by trigger the attached event.
+	  * @param {Boolean} l Defines the type (local or global) of the event.
+	  * @return {Object} Returns the reference to the current event handler.  
+	  * @chainable
+	  */
 	trigger: function (event, d, l) {
 		
 		var config = this.cmp().config();
@@ -2492,6 +2629,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		return this;
 	},
 	
+	/**
+	  * Triggers an event bubbling upward in the component hirarchy. 
+	  * @method bubbleOut
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} data Defines the event data by trigger the attached event.
+	  * @param {Boolean} local Defines the type (local or global) of the event.
+	  */
 	bubbleOut: function (event, data, local) {
 		
 		// trigger event in current component
@@ -2506,6 +2650,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		
 	},
 	
+	/**
+	  * Triggers an event bubbling down into the component hirarchy. 
+	  * @method bubbleIn
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} data Defines the event data by trigger the attached event.
+	  * @param {Boolean} local Defines the type (local or global) of the event.
+	  */
 	bubbleIn: function (event, data, local) {
 		
 		// trigger event in current component
@@ -2527,6 +2678,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		
 	},
 
+	/**
+	  * Triggers an event bubbling upwards and also down into the component hirarchy. 
+	  * @method bubble
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} data Defines the event data by trigger the attached event.
+	  * @param {Boolean} local Defines the type (local or global) of the event.
+	  */
 	bubble: function (event, data, local) {
 		
 		// trigger event in current component
@@ -2544,6 +2702,13 @@ jsCow.res.core.events.eventsManager.prototype = {
 		
 	},
 	
+	/**
+	  * Triggers all event bubblings in the event handler. 
+	  * @method bubbleTrigger
+	  * @param {String} event Defines the name of the attached event 
+	  * @param {Object} data Defines the event data by trigger the attached event.
+	  * @param {Boolean} local Defines the type (local or global) of the event.
+	  */
 	bubbleTrigger: function (event, data, local) {
 		var bubble = true;
 		

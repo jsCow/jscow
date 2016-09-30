@@ -5,73 +5,26 @@ module.exports = function(grunt) {
 		
 		// Permission problem try to exec command "npm cache clean"
 		watch: {
-            //less: {
-            //    files: [
-			//		'src/less//{,*/}*.less',
-			//		'/{,*/}*.js'
-			//	],
-            //  tasks: [
-			//		'clean',
-			//		'less'
-			//	]
-            //}
-        },
-		
+			scripts: {
+				files: ['src/**/*.js'],
+				tasks: [
+					'jshint',
+					'clean',
+					'concat',
+					'uglify',
+					'browserify',
+					'yuidoc'
+				]        
+			},
+		},
+
 		clean: {
 			clean: [
-				"dist"
+				"dist",
+				"docs"
 			]
 		},
 
-		copy: {
-			main: {
-				files: [
-					//{
-					//	expand: true, 
-					//	cwd: 'src/components', 
-					//	src: '**/*.js',
-					//	dest: 'dist/jscow/components'
-					//}
-				]
-			}
-		},
-		
-		uglify: {
-			options: {
-				mangle: {
-					except:	['jQuery']
-				}
-			},
-			my_target: {
-				options: {
-					mangle: false
-				},
-				files: [
-					{
-						'dist/jscow/jscow.js': [
-							'dist/jscow/jscow.min.js'
-						]
-					}
-				]
-			}
-		},
-
-		concat: {
-			options: {
-				separator: ';'
-			},
-			dist: {
-				src: [
-					'src/jscow/jscow.js', 
-					'src/jscow/jscow.components.js', 
-					'src/jscow/jscow.components.view.js', 
-					'src/jscow/jscow.components.controller.js', 
-					'src/jscow/jscow.events.js'
-				],
-				dest: 'dist/jscow/jscow.js'
-			}
-		},
-		
 		jshint: {
 			options: {
 				curly: true,
@@ -87,6 +40,63 @@ module.exports = function(grunt) {
 			all: ['src/jscow/**/*.js']
 		},
 
+		copy: {
+			main: {
+				files: [
+					//{
+					//	expand: true, 
+					//	cwd: 'src/components', 
+					//	src: '**/*.js',
+					//	dest: 'dist/jscow/components'
+					//}
+				]
+			}
+		},
+		
+		concat: {
+			options: {
+				separator: ';'
+			},
+			dist: {
+				src: [
+					'src/jscow/jscow.js', 
+					'src/jscow/jscow.components.js', 
+					'src/jscow/jscow.components.view.js', 
+					'src/jscow/jscow.components.controller.js', 
+					'src/jscow/jscow.events.js'
+				],
+				dest: 'dist/jscow.js'
+			}
+		},
+
+		browserify: {
+			dist: {
+				files: {
+					'dist/jscow.module.js': ['dist/jscow.js']
+			    }
+			}
+		},
+		
+		uglify: {
+			options: {
+				mangle: {
+					except:	['jQuery']
+				}
+			},
+			my_target: {
+				options: {
+					mangle: false
+				},
+				files: [
+					{
+						'dist/jscow.min.js': [
+							'dist/jscow.js'
+						]
+					}
+				]
+			}
+		},
+
 		yuidoc: {
 			compile: {
 				name: '<%= pkg.name %>',
@@ -95,22 +105,11 @@ module.exports = function(grunt) {
 				url: '<%= pkg.homepage %>',
 				options: {
 					paths: 'src/jscow/',
-					outdir: 'dist/docs/'
+					outdir: 'docs/'
 				}
 			}
-		},
-
-		browserify: {
-			dist: {
-				files: {
-					'dist/jscow/jscow.module.js': [
-						'dist/jscow/jscow.js'
-					]
-				},
-				options: {}
-			}
 		}
-		
+
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-clean');
