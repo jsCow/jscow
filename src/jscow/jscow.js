@@ -1,15 +1,18 @@
 /*
-jsCow - JavaScript Component Framework
-http://www.jscow.de
-Author: Mario Linz
-*/
- 
+ * jsCow - JavaScript Component Framework v3.1.0
+ * https://github.com/jsCow/jscow
+ * 
+ * Released under the GNU GENERAL PUBLIC LICENSE
+ * https://github.com/jsCow/jscow/blob/master/LICENSE
+ */
+
 /**
-Basis Klassen des jsCow-Framework.
+Core class of the jsCow framework.
 
 @class jsCow
 @constructor 
 */
+
 jsCow = (function() {
 	
 	var jsCowBase = function() {
@@ -180,3 +183,54 @@ if (typeof module !== 'undefined' && !!module.exports) {
 		"jsCow": jsCow
 	};
 }
+
+( function( global, factory ) {
+
+	"use strict";
+
+	if ( typeof module === "object" && typeof module.exports === "object" ) {
+		module.exports = global.document ?
+			factory( global, true ) :
+			function( w ) {
+				if ( !w.document ) {
+					throw new Error( "jsCow requires a window with a document" );
+				}
+				return factory( w );
+			};
+	} else {
+		factory( global );
+	}
+
+// Pass this if window is not defined yet
+} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+
+
+
+});
+
+(function (root, factory) {
+
+	"use strict";
+	
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['b'], function (b) {
+            return (root.returnExportsGlobal = factory(b));
+        });
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory(require('b'));
+    } else {
+        // Browser globals
+        root.returnExportsGlobal = factory(root.b);
+    }
+}(this, function (b) {
+    //use b in some fashion.
+
+    // Just return a value to define the module export.
+    // This example returns an object, but the module
+    // can return a function as the exported value.
+    return {};
+}));

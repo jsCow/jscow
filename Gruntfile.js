@@ -5,16 +5,16 @@ module.exports = function(grunt) {
 		
 		// Permission problem try to exec command "npm cache clean"
 		watch: {
-            less: {
-                files: [
-					'src/less//{,*/}*.less',
-					'/{,*/}*.js'
-				],
-                tasks: [
-					'clean',
-					'less'
-				]
-            }
+            //less: {
+            //    files: [
+			//		'src/less//{,*/}*.less',
+			//		'/{,*/}*.js'
+			//	],
+            //  tasks: [
+			//		'clean',
+			//		'less'
+			//	]
+            //}
         },
 		
 		clean: {
@@ -22,46 +22,16 @@ module.exports = function(grunt) {
 				"dist"
 			]
 		},
-		
-		less: {
-			production: {
-				options: {
-					//relativeUrls: true,
-					paths: ["src/less"],
-					cleancss: true,
-					modifyVars: {
-						//imgPath: '"http://"'
-					}
-				},
-				files: {
-					"dist/css/theme-min.css": "src/less/theme.less"
-				}
-			}
-		},
-		
+
 		copy: {
 			main: {
 				files: [
-					{
-						expand: true, 
-						cwd: 'src/jscow/components', 
-						src: '**/*.js',
-						dest: 'dist/jscow/components'
-					},
-					{
-	                    expand: true,
-	                    //dot: true,
-	                    cwd: 'node_modules/font-awesome',
-	                    src: ['fonts/*.*'],
-	                    dest: 'dist'
-					},
-					{
-	                    expand: true,
-	                    //dot: true,
-	                    cwd: 'src/less',
-	                    src: ['**'],
-	                    dest: 'dist/css/less'
-					}
+					//{
+					//	expand: true, 
+					//	cwd: 'src/components', 
+					//	src: '**/*.js',
+					//	dest: 'dist/jscow/components'
+					//}
 				]
 			}
 		},
@@ -78,13 +48,9 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						expand: true,
-						cwd: 'src/jscow/components',
-						src: '**/*.js',
-						dest: 'dist/jscow/components'
-					},
-					{
-						'dist/jscow/jscow.min.js': ['dist/jscow/jscow.min.js']
+						'dist/jscow/jscow.js': [
+							'dist/jscow/jscow.min.js'
+						]
 					}
 				]
 			}
@@ -92,7 +58,7 @@ module.exports = function(grunt) {
 
 		concat: {
 			options: {
-				separator: ';',
+				separator: ';'
 			},
 			dist: {
 				src: [
@@ -102,7 +68,7 @@ module.exports = function(grunt) {
 					'src/jscow/jscow.components.controller.js', 
 					'src/jscow/jscow.events.js'
 				],
-				dest: 'dist/jscow/jscow.min.js'
+				dest: 'dist/jscow/jscow.js'
 			}
 		},
 		
@@ -132,12 +98,22 @@ module.exports = function(grunt) {
 					outdir: 'dist/docs/'
 				}
 			}
+		},
+
+		browserify: {
+			dist: {
+				files: {
+					'dist/jscow/jscow.module.js': [
+						'dist/jscow/jscow.js'
+					]
+				},
+				options: {}
+			}
 		}
 		
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-compress');
@@ -145,33 +121,15 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-browserify');
 	
 	// Default task(s).
 	grunt.registerTask('default', [
 		'jshint',
 		'clean',
-		'less',
 		'concat',
-		'copy',
-		'uglify'
-	]);
-
-	// Debug and Development task(s).
-	grunt.registerTask('debug', [
-		'clean',
-		'less',
-		'concat',
-		'copy'
-	]);
-
-	// All task(s).
-	grunt.registerTask('all', [
-		'jshint',
-		'clean',
-		'less',
-		'concat',
-		'copy',
 		'uglify',
+		'browserify',
 		'yuidoc'
 	]);
 
