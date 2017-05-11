@@ -1,11 +1,9 @@
 ==========================================================
 
-The jsCow framework is available and usable in this github repository. 
+# The jsCow framework is not longer in development and is no longer supported.
+# For questions you can still write a message or an email. I will try to help you but it's not possible for me to fix any bugs.
 
-*** Only the ... GRUNT ENVIRONMENT IS WORK IN PROGRESS !!! ***
-
-You can find the generated *jscow.min.js* in *dist/jscow* directory.
-All minimized component files will be outsourced in specific node packages with in own github repositories.
+# Feel free to use or change it.
 
 ==========================================================
 
